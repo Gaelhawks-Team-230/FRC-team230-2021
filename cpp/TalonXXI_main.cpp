@@ -13,28 +13,30 @@
 
 using namespace ctre::phoenix::motorcontrol;
 
+// Hello
+
 TalonXXI::TalonXXI()
 {
   pdp = new frc::PowerDistributionPanel();
   surveillance = new SensorState(this); // NOTE this object must be created first!!!
   userInput = new JoystickState(this);
   limelight = new LimelightCamera(this); //NOTE this object must be created before mechanisms
- 
-//#ifdef TEST_DRIVE
+
+  //#ifdef TEST_DRIVE
   drive = new Drivetrain(this);
-//#endif
+  //#endif
   shooter = new BallShooter(this);
- 
+
   turret = new ShooterTurret(this);
- 
+
   collector = new CellCollector(this);
   climb = new Climber(this);
-//#endif
+  //#endif
   deathStar = new DeathStar(this);
   colorWheel = new WheelOfFortune(this);
 
   loopCount = 0;
-  
+
   AutoPositionChooser = new frc::SendableChooser<int>;
   AutoBallNumber = new frc::SendableChooser<int>;
   dashCounter = 0;
@@ -57,16 +59,16 @@ TalonXXI::TalonXXI()
   printf("constructor end\n");
 }
 
-void TalonXXI::RobotInit() 
+void TalonXXI::RobotInit()
 {
   frc::SmartDashboard::PutNumber("Delay time", 0.0);
 
   AutoPositionChooser->AddOption("Feeder", FEEDER_POS);
-	AutoPositionChooser->SetDefaultOption("Center", CENTER_POS);
-	AutoPositionChooser->AddOption("Trench", TRENCH_POS);
+  AutoPositionChooser->SetDefaultOption("Center", CENTER_POS);
+  AutoPositionChooser->AddOption("Trench", TRENCH_POS);
   AutoPositionChooser->AddOption("Do Nothing", DO_NOTHING);
   AutoPositionChooser->AddOption("Baseline", BASELINE);
-	frc::SmartDashboard::PutData("Position: ", AutoPositionChooser);
+  frc::SmartDashboard::PutData("Position: ", AutoPositionChooser);
 
   AutoBallNumber->SetDefaultOption("One Ball", ONE_BALL);
   AutoBallNumber->AddOption("Two Ball", TWO_BALL);
@@ -82,7 +84,7 @@ void TalonXXI::DisabledInit()
 {
   Omnicide();
   limelight->TurnOffLED();
-} 
+}
 
 void TalonXXI::DisabledPeriodic()
 {
@@ -101,79 +103,79 @@ void TalonXXI::DisabledPeriodic()
 
 void TalonXXI::InitializeAlliance()
 {
-  if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::kBlue)
-		isBlueAlliance = true;
-	else
-		isBlueAlliance = false;
+  if (frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::kBlue)
+    isBlueAlliance = true;
+  else
+    isBlueAlliance = false;
 }
 
-void TalonXXI::RobotPeriodic() 
+void TalonXXI::RobotPeriodic()
 {
   //printf("Robotperiodic\n");
-    if(firstTime)
-    {
-      InitializeAlliance();
-      firstTime = false;
-    }
+  if (firstTime)
+  {
+    InitializeAlliance();
+    firstTime = false;
+  }
 }
 
-void TalonXXI::AutonomousInit() 
+void TalonXXI::AutonomousInit()
 {
   isAuto = true;
   ModeSelection();
   loopCount = 0;
 }
 
-void TalonXXI::AutonomousPeriodic() 
+void TalonXXI::AutonomousPeriodic()
 {
   loopCount++;
-  if(loopCount < delayCount)
+  if (loopCount < delayCount)
   {
     isDelay = true;
   }
   else
   {
     isDelay = false;
-    switch(autoMode)
+    switch (autoMode)
     {
-      case 0:
-        DoNothing();
-        break;
+    case 0:
+      DoNothing();
+      break;
 
-      case 1:
-        InitiationLine();
-        break;
+    case 1:
+      InitiationLine();
+      break;
 
-      case 2:
-        FeederShootFirst();
-        break;
+    case 2:
+      FeederShootFirst();
+      break;
 
-      case 3:
-        CenterShootFirst();
-        break;
+    case 3:
+      CenterShootFirst();
+      break;
 
-      case 4:
-        TrenchShootFirst();
-        break;
+    case 4:
+      TrenchShootFirst();
+      break;
 
-      case 5:
-        FeederShootSecond();
-        break;
+    case 5:
+      FeederShootSecond();
+      break;
 
-      case 6:
-        CenterShootSecond();
-        break;
+    case 6:
+      CenterShootSecond();
+      break;
 
-      case 7:
-        TrenchShootSecond();
-        break;
+    case 7:
+      TrenchShootSecond();
+      break;
     }
   }
   CommunityService();
   ServiceDash();
 }
 
-void TalonXXI::TeleopInit() 
+void TalonXXI::TeleopInit()
 {
   isAuto = false;
   surveillance->Analyze();
@@ -184,14 +186,14 @@ void TalonXXI::TeleopInit()
   //limelight->TurnOnLED();
 }
 
-void TalonXXI::TeleopPeriodic() 
+void TalonXXI::TeleopPeriodic()
 {
-  
+
   surveillance->Analyze();
   userInput->Analyze();
-//#ifndef TEST_DRIVE
+  //#ifndef TEST_DRIVE
   limelight->Analyze();
-  if(userInput->FlightCtrlBtnPushed(1))
+  if (userInput->FlightCtrlBtnPushed(1))
   {
     drive->GyroOn();
   }
@@ -199,12 +201,12 @@ void TalonXXI::TeleopPeriodic()
   {
     drive->GyroOff();
   }
-  
-  if(userInput->GamepadBtnPushed(6))
+
+  if (userInput->GamepadBtnPushed(6))
   {
     collector->GrabCells();
   }
-  else if(userInput->GamepadBtnPushed(5))
+  else if (userInput->GamepadBtnPushed(5))
   {
     collector->EjectCells();
   }
@@ -213,17 +215,17 @@ void TalonXXI::TeleopPeriodic()
     collector->StopGrab();
   }
 
-  if(userInput->GamepadBtnPushed(1))
+  if (userInput->GamepadBtnPushed(1))
   {
     deathStar->IntakeCells();
   }
-  else if(userInput->GamepadBtnPushed(2))
+  else if (userInput->GamepadBtnPushed(2))
   {
     deathStar->PrepToShoot();
-  //  limelight->TurnOnLED();
+    //  limelight->TurnOnLED();
     shooter->GiveShooterGoalVel(500.0);
   }
-  else if(userInput->GamepadBtnPushed(3))
+  else if (userInput->GamepadBtnPushed(3))
   {
     deathStar->FireAtWill();
     shooter->GiveShooterGoalVel(500.0);
@@ -231,18 +233,18 @@ void TalonXXI::TeleopPeriodic()
   else
   {
     deathStar->SetIdle();
-   // limelight->TurnOffLED();
+    // limelight->TurnOffLED();
     shooter->GiveShooterGoalVel(0.0);
   }
-  if(userInput->GetGamepadButton(10) == kPressing)
+  if (userInput->GetGamepadButton(10) == kPressing)
   {
     deathStar->Decreasepcmd();
   }
-  if(userInput->GetGamepadButton(9) == kPressing)
+  if (userInput->GetGamepadButton(9) == kPressing)
   {
     deathStar->Increasepcmd();
   }
-  if(userInput->GamepadBtnPushed(8))
+  if (userInput->GamepadBtnPushed(8))
   {
     turret->SetTargetingValues();
     shooter->SetTargeting();
@@ -251,7 +253,7 @@ void TalonXXI::TeleopPeriodic()
   {
     turret->StopTargeting();
   }
- /* if(userInput->GamepadBtnPushed(8))
+  /* if(userInput->GamepadBtnPushed(8))
   {
     deathStar->Testing(1.0);
   }
@@ -283,7 +285,7 @@ void TalonXXI::TeleopPeriodic()
   {
     shooter->GiveShroudGoalAngle(SHROUD_BEHIND_COLOR_WHEEL_ANGLE);
   }*/
-  
+
   /*if(userInput->GetGamepadButton(7) == kPressing)
   {
     shooter->GiveShroudGoalAngle(-1.0);
@@ -293,7 +295,7 @@ void TalonXXI::TeleopPeriodic()
     shooter->GiveShroudGoalAngle(1.0);
 
   }*/
- /* if(userInput->GamepadBtnPushed(5))
+  /* if(userInput->GamepadBtnPushed(5))
   {
     collector->GathererIn();
   }
@@ -306,7 +308,7 @@ void TalonXXI::TeleopPeriodic()
   {
     collector->TestingSpin(1.0);
   }*/
- /* if(userInput->GetGamepadButton(10) == kPressing)
+  /* if(userInput->GetGamepadButton(10) == kPressing)
   {
     shooter->TestingShroud(userInput->GetFlightControllerAxis(2));
   }
@@ -314,8 +316,8 @@ void TalonXXI::TeleopPeriodic()
   {
     shooter->TestingShroud(0.0);
   }*/
-  
- /* if(userInput->GetGamepadButton(1) == kPressing)
+
+  /* if(userInput->GetGamepadButton(1) == kPressing)
   {
     deathStar->Increasepcmd();
   }
@@ -327,11 +329,11 @@ void TalonXXI::TeleopPeriodic()
   {
     deathStar->Testing(userInput->GetGamepadAxis(0));
   }*/
-  
- //shooter->TestingShooter(userInput->GetGamepadAxis(0));
- // climb->ExtendTesting(userInput->GetGamepadAxis(0));
+
+  //shooter->TestingShooter(userInput->GetGamepadAxis(0));
+  // climb->ExtendTesting(userInput->GetGamepadAxis(0));
   /*climb->WinchTesting(userInput->GetGamepadAxis(2));*/
- // turret->Testing(userInput->GetFlightControllerAxis(0));
+  // turret->Testing(userInput->GetFlightControllerAxis(0));
 
   drive->DriveControl(userInput->GetFlightControllerAxis(SPEED_AXIS), userInput->GetFlightControllerAxis(ROTATE_AXIS), false);
   CommunityService();
@@ -340,11 +342,11 @@ void TalonXXI::TeleopPeriodic()
 
 void TalonXXI::ServiceDash()
 {
-  if(dashCounter == 20)
+  if (dashCounter == 20)
   {
     dashCounter = 0;
     userInput->UpdateDash();
-  //#ifndef TEST_DRIVE
+    //#ifndef TEST_DRIVE
     surveillance->UpdateDash();
     shooter->UpdateDash();
     turret->UpdateDash();
@@ -352,16 +354,14 @@ void TalonXXI::ServiceDash()
     deathStar->UpdateDash();
     collector->UpdateDash();
     colorWheel->UpdateDash();
-  //#endif
-    
-   // climb->UpdateDash();
+    //#endif
+
+    // climb->UpdateDash();
   }
   else
   {
     dashCounter++;
   }
-  
-
 }
 
 void TalonXXI::CommunityService()
@@ -381,31 +381,30 @@ void TalonXXI::Omnicide()
 {
   surveillance->StopAll();
   userInput->StopAll();
-//#ifndef TEST_DRIVE
+  //#ifndef TEST_DRIVE
   shooter->StopAll();
   turret->StopAll();
   limelight->StopAll();
   deathStar->StopAll();
-//#endif
+  //#endif
   collector->StopAll();
   colorWheel->StopAll();
   drive->StopAll();
   //climb->StopAll();
-
 }
 
 double TalonXXI::Limit(double min, double max, double curValue)
 {
-	if (curValue > max)
-		return max;
-	if (curValue < min)
-		return min;
-	return curValue;
+  if (curValue > max)
+    return max;
+  if (curValue < min)
+    return min;
+  return curValue;
 }
 
 double TalonXXI::Sign(double curValue)
 {
-  if(curValue < 0.0)
+  if (curValue < 0.0)
     return (-1.0);
   else
     return (1.0);
@@ -415,22 +414,22 @@ void TalonXXI::RobotStartingConfig()
 {
   surveillance->StartingConfig();
   userInput->StartingConfig();
-//#ifndef TEST_DRIVE
+  //#ifndef TEST_DRIVE
   shooter->StartingConfig();
   turret->StartingConfig();
   limelight->StartingConfig();
-//#endif
+  //#endif
   //collector->StartingConfig();
   //climb->StartingConfig();
-
 }
 
-
-void TalonXXI::TestPeriodic() 
+void TalonXXI::TestPeriodic()
 {
-
 }
 
 #ifndef RUNNING_FRC_TESTS
-int main() { return frc::StartRobot<TalonXXI>(); }
+int main()
+{
+  return frc::StartRobot<TalonXXI>();
+}
 #endif
