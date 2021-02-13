@@ -1,3 +1,4 @@
+/*
 #ifndef WHEELOFFORTUNE_H_
 #define WHEELOFFORTUNE_H_
 
