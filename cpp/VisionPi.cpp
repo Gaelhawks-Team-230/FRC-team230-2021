@@ -1,43 +1,53 @@
 #include "Common.h"
 #include "VisionPi.h"
 
+
 VisionPi::Visionpi(TalonXXI* pRobot)
 {
     mainRobot = pRobot;
-    //add a sensor class object here when that class is created
-    
+    table = nt::NetworkTableInstance::GetDefault().GetTable("VisionPi");
     LocalReset();
 }
 
-//Sets all local variables
 void Sample::LocalReset()
 {
+    targetIdentify = 0.0
+    targetX = 0.0
+    targetY = 0.0
+    targetDistance = 0.0;
+    TargetTranslationReset();
 }
 
-//Holds how the variables should be set when the robot starts
-void Sample::StartingConfig()
+void VisionPi::StartingConfig()
 {
 
 }
 
-
-void Sample::StopAll()
+void VisionPi::StopAll()
 {
 
 }
 
-//Just an example for creating a function that takes input
-void Sample::DoAThing(int a)
+void VisionPi::UpdateDash()
 {
-
+frc::SmartDashboard::PutNumber("Target Identified", targetIdentify);
+frc::SmartDashboard::PutNumber("Target X", targetX);
+frc::SmartDashboard::PutNumber("Target Y", targetY);
+frc::SmartDashboard::PutNumber("Target Distance", targetDistance);
+/*
+frc::SmartDashboard::PutNumber("Target Identified Translation", targetTransArray[0]);
+frc::SmartDashboard::PutNumber("Target X Translation", targetTransArray[1]);
+frc::SmartDashboard::PutNumber("Target Y Translation", targetTransArray[2]);
+frc::SmartDashboard::PutNumber("Target Distance Translaton", targetTransArray[4]);
+*/
 }
 
-//Anything that you want printed on the dashboard for testing or during match. 
-//Any information which may be important. 
-void Sample::UpdateDash()
+void VisionPi::Analyze()
 {
-    // Example: 
-    //frc::SmartDashboard::PutNumber("Text to label data here:", ShownVariable);
+    targetIdentify = table->GetNumber("ti", 0.0);
+    targetX = table->GetNumber("tx", 0.0);
+    targetY = table->GetNumber("ty", 0.0);
+    targetDistance = table->GetNumber("td", 0.0);
 }
 
 //Called every loop (used for timing related stuff)
