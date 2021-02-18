@@ -7,9 +7,9 @@
 #include "frc/smartdashboard/Smartdashboard.h"
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h"
-#include <frc/util/color.h>
-#include "rev/ColorSensorV3.h"
-#include "rev/ColorMatch.h"
+//#include <frc/util/color.h>
+//#include "rev/ColorSensorV3.h"
+//#include "rev/ColorMatch.h"
 #include <frc/Encoder.h>
 #include <frc/DigitalInput.h>
 #include <frc/ADXRS450_Gyro.h>
@@ -34,6 +34,7 @@
 #define TURRET_DEGREE_RANGE         (360.0)
 #define TURRET_GYRO_READING_K       (-1.05)
 
+/*
 //climber
 //#define CLIMBER_ENCODER_PULSE_COUNT            (1024.0)
 #define WINCH_DISTANCE_PER_PULSE             (1.0)
@@ -41,6 +42,7 @@
 //color wheel
 #define COLOR_ENCODER_PULSE_COUNT    (1024.0)
 #define COLOR_DISTANCE_PER_PULSE     (1.0)
+*/
 
 //drivetrain
 #define WHEEL_CIRCUMFERENCE          (6.0*PI)  //inches
@@ -99,6 +101,7 @@ class SensorState
         double turretDegreesPerSec;
         double turretOldAngle;*/
 
+        /*
         //climber
         frc::DutyCycleEncoder *climbDeliver;
         frc::Encoder *winch;
@@ -125,6 +128,7 @@ class SensorState
         frc::Color matchedColor;
         char colorChar;
         double confidence;
+        */
 
         //drivetrain
         ctre::phoenix::motorcontrol::can::WPI_TalonFX *leftDriveFalcon;
@@ -206,7 +210,8 @@ class SensorState
         inline double GetAngleRadians_Turret() { return turretAngleRadians; };
         inline double GetAngleRadPerSec_Turret() { return turretRadPerSec; };
         inline double GetDegreesPerSec_Turret() { return turretDegreesPerSec; };*/
-
+        
+        /*
         //climber
         inline double GetClimberGyroVelocity() { return gyroVelCLB; };
         inline double GetClimbDist() { return climbDis; };
@@ -215,6 +220,7 @@ class SensorState
         //color wheel
         inline frc::Color GetColorSensorReading() { return matchedColor; };
         inline char GetColorChar() {return colorChar; };
+        */
 
         //drivetrain
         void InitDriveFalcons (ctre::phoenix::motorcontrol::can::WPI_TalonFX *leftMotor, ctre::phoenix::motorcontrol::can::WPI_TalonFX *rightMotor);

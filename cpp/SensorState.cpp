@@ -22,18 +22,19 @@ SensorState::SensorState(TalonXXI* pRobot)
     turretGyro = new frc::AnalogGyro(TURRET_GYRO_ANALOG);
    // turretGyro = new frc::ADXRS450_Gyro(frc::SPI::kOnboardCS0);
 
-    //climber
+    /*//climber
     //climbGyro = new frc::ADXRS450_Gyro(frc::SPI::kOnboardCS0);
     climbDeliver = new frc::DutyCycleEncoder(CLIMBER_DUTY_CYCLE);
     winch = new frc::Encoder(WINCH_ENCODER_ONE, WINCH_ENCODER_TWO, false);
     winch->SetDistancePerPulse(WINCH_DISTANCE_PER_PULSE);
-
+    
    
     //color wheel
     m_colorMatcher.AddColorMatch(kBlueTarget);
     m_colorMatcher.AddColorMatch(kGreenTarget);
     m_colorMatcher.AddColorMatch(kRedTarget);
     m_colorMatcher.AddColorMatch(kYellowTarget);
+    */
 
     //drivetrain
     leftDriveFalcon = NULL;
@@ -102,6 +103,7 @@ void SensorState::LocalReset()
     shroudingDegreesPerSec = 0.0;
     shroudingOldAngle = 0.0;
 
+    /*
     //climber
     climbDis = 0.0;
     oldClimbDis = 0.0;
@@ -120,6 +122,7 @@ void SensorState::LocalReset()
     gyroReadingDRV = driveGyro->GetAngle();
     oldGyroReadingDRV = gyroReadingDRV;
     gyroVelDRV = 0.0;
+    */
     
     //deathstar
     deathStarCurrentAngle = 0.0;
@@ -168,6 +171,7 @@ void SensorState::UpdateDash()
     frc::SmartDashboard::PutNumber("Turret Rad Per Sec:", turretRadPerSec);
     frc::SmartDashboard::PutNumber("Turret Degrees Per Sec:", turretDegreesPerSec);*/
 
+    /*
     //climber
     frc::SmartDashboard::PutNumber("Climber Distance:", climbDis);
     frc::SmartDashboard::PutNumber("Climber Velocity:", currentClimbVel);
@@ -180,6 +184,7 @@ void SensorState::UpdateDash()
     frc::SmartDashboard::PutNumber("Green", detectedColor.green);
     frc::SmartDashboard::PutNumber("Blue", detectedColor.blue);
     frc::SmartDashboard::PutNumber("Confidence", confidence);
+    */
 
     //drivetrain
     frc::SmartDashboard::PutNumber("Drive Left Drive Dis:", leftWheelDisDrive);
@@ -238,16 +243,17 @@ void SensorState::Analyze()
   //  turretRadPerSec = (turretAngleRadians * 1000)/LOOPTIME;
     //turretDegreesPerSec = (turretCurrentAngle-turretOldAngle)/LOOPTIME;
 
+    /*
     //climber
     climbDis = climbDeliver->GetDistance();
     currentClimbVel = (climbDis - oldClimbDis)/LOOPTIME;
     oldClimbDis = climbDis;
     winchDist = winch->GetDistance();
     // printf("%d %f %f \n", loopCount, climbDis, winchDist);
-    /* gyroReadingCLB = climbGyro->GetAngle();
+    gyroReadingCLB = climbGyro->GetAngle();
     gyroVelCLB = (gyroReadingCLB - oldGyroReadingCLB)/LOOPTIME;
-    oldGyroReadingCLB = gyroReadingCLB;*/
-
+    oldGyroReadingCLB = gyroReadingCLB:
+    
     //color wheel
     detectedColor = m_colorSensor.GetColor();
     matchedColor = m_colorMatcher.MatchClosestColor(detectedColor, confidence);
@@ -272,6 +278,7 @@ void SensorState::Analyze()
         colorChar = 'X'; //Unknown
     }
    // printf("%c\n", colorChar);
+   */
 
     //drivetrain
     ReadDriveEncoders();

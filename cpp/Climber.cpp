@@ -1,4 +1,4 @@
-/*
+
 #include "Common.h"
 #include "Climber.h"
 
@@ -152,7 +152,7 @@ void Climber::Service()
 
         
     }*/
-/*
+
 #endif
    // printf("%f %f \n", extendMotorCmd, winchMotorCmd);
     climbExtendMotor->Set(extendMotorCmd);
@@ -189,4 +189,3 @@ void Climber::WinchTesting(double input)
     winchMotorCmd = TalonXXI::Limit(-0.3, 0.3, winchMotorCmd);
 }
 #endif
-*/
