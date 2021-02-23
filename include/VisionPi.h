@@ -1,33 +1,42 @@
-#ifndef SAMPLE_H_
-#define SAMPLE_H_
+#ifndef VisionPi_H_
+#define VisionPi_H_
+
+#include "TalonXXI_main.h"
+#include "frc/smartdashboard/Smartdashboard.h"
+#include "networktables/NetworkTable.h"
+#include "networktables/NetworkTableInstance.h"
+
+//VisionPi
+#define 
+#define
 
 class TalonXXI;
 
-//#defines
-//example: #define LEVEL_ONE_HEIGHT     (23.0)
-
-class Sample
+class VisionPi
 {
     private:
-       // Create objects needed by this class
-		// example: VictorSP *sampleMotor;
-
         TalonXXI *mainRobot;
-        //add a pointer to sensor class when it is created
 
-        //declare member variables
-        //example: float height;
-
+        //VisionPi
+        std::shared_ptr<NetworkTable> table;
+        std::vector<double>targetIdentify_array;
+        std::vector<double>targetXMarker_array;
+        std::vector<double>targetXPowerCell_array;
+        std::vector<double>targetYMarker_array;
+        std::vector<double>targetYPowerCell_array;
+        std::vector<double>targetDistanceMarker_array;
+        std::vector<double>targetDistancePowerCell_array;
+        std::vector<double>targetHeadingMarker_array;
+        std::vector<double>targetHeadingPowerCell_array;
 
     public:
-        Sample(TalonXXI* pRobot);
-        //Functions
-        void LocalReset(void);
-        void StartingConfig(void);
-        void StopAll(void);
-        void DoAThing(int);
-        void UpdateDash(void);
-        void Service(void);
-        void ControlSystem(void);
-};
-#endif /*Sample_H_*/
+        //Constructer
+        VisionPi(TalonXXI* pRobot);
+
+        //RobotFunctions
+        void LocalReset(void)
+        void StartingConfig(void)
+        void StopAll(void)
+        void UpdateDash(void)
+        void Analyze (void)
+}
