@@ -61,15 +61,48 @@ void VisionPi::Analyze()
 {
     targetIdentify_array = table->GetNumberArray("ti", []);
     targetXMarker_array = table->GetNumberArray("txm", []);
-    targetXPowerCell_array = table->GetNumberArrary("txp"[]);
+    targetXPowerCell_array = table->GetNumberArray("txp"[]);
     targetYMarker_array = table->GetNumberArray("tym", []);
     targetYPowerCell_array = table->GetNumberArray("typ", []);
     targetDistanceMarker_array = table->GetNumberArray("tdm",[]);
     targetDistancePowerCell_array = table->GetNumberArray("tdp", []);
     targetHeadingMarker_array = table->GetNumberArray("thm",[]);
-    targetHeadingPowerCell_array = table->GetNumberArray("thp,[]");
+    targetHeadingPowerCell_array = table->GetNumberArray("thp",[]);
 
 }
 
-void VisionPi::IDPowerCell()
+void VisionPi::SetCurrentTarget(int targetID)
+{
+    for (int i = 0; i < 8; i++)
+    {
+        if (targetIdentify_array[i]==targetID)
+        {
+            currTargetX = targetXMarker_array[i];
+            currTargetY = targetYMarker_array[i];
+            currDistanceMarker = targetDistanceMarker_array[i];
+            currHeadingMarker = targetHeadingMarker_array[i];
 
+            break;
+        }
+    }
+}
+
+double VisionPi::GetCurrTargetX()
+{
+    return currTargetX;
+}
+
+double VisionPi::GetCurrTargetY()
+{
+    return currTargetY;
+}
+
+double VisionPi::GetCurrDistanceMarker()
+{
+    return currDistanceMarker;
+}
+
+double VisionPi::GetCurrHeadingMarker()
+{
+    return currHeadingMarker;
+}
