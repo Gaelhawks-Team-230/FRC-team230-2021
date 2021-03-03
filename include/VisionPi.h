@@ -47,7 +47,7 @@ class VisionPi
         void StopAll(void)
         void UpdateDash(void)
         void Analyze (void)
-        void SetCurrentTarget(int TargetID)
+        bool SetCurrentTarget(int TargetID)
         double GetCurrTargetX(double)
         double GetCurrTargetY(double)
         double GetCurrDistanceMarker(double)

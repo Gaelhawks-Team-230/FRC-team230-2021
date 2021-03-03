@@ -19,7 +19,11 @@ void Sample::LocalReset()
     targetDistanceMarker = []
     targetDistancePowerCell = []
     targetHeadingMarker = []
-    targetHeadingPowerCell = [];
+    targetHeadingPowerCell = []
+    currTargetX = 0
+    currTargetY = 0
+    currDistanceMarker = 0
+    currHeadingMarker = 0;
     TargetTranslationReset();
 }
 
@@ -70,10 +74,9 @@ void VisionPi::Analyze()
     targetHeadingPowerCell_array = table->GetNumberArray("thp",[]);
 
 }
-
-void VisionPi::SetCurrentTarget(int targetID)
+bool VisionPi::SetCurrentTarget(int targetID)
 {
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < targetIdentify_array.size(); i++)
     {
         if (targetIdentify_array[i]==targetID)
         {
@@ -82,27 +85,28 @@ void VisionPi::SetCurrentTarget(int targetID)
             currDistanceMarker = targetDistanceMarker_array[i];
             currHeadingMarker = targetHeadingMarker_array[i];
 
-            break;
+            return true;
         }
-    }
+    } 
+    return false;
 }
 
-double VisionPi::GetCurrTargetX()
+double VisionPi::GetCurrTargetX(void)
 {
     return currTargetX;
 }
 
-double VisionPi::GetCurrTargetY()
+double VisionPi::GetCurrTargetY(void)
 {
     return currTargetY;
 }
 
-double VisionPi::GetCurrDistanceMarker()
+double VisionPi::GetCurrDistanceMarker(void)
 {
     return currDistanceMarker;
 }
 
-double VisionPi::GetCurrHeadingMarker()
+double VisionPi::GetCurrHeadingMarker(void)
 {
     return currHeadingMarker;
 }
