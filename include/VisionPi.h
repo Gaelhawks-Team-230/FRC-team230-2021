@@ -23,15 +23,12 @@ class VisionPi
 
         //VisionPi
         std::shared_ptr<NetworkTable> table;
-        std::vector<double> targetIdentify_array;
-        std::vector<double> targetXMarker_array;
-        std::vector<double> targetXPowerCell_array;
-        std::vector<double> targetYMarker_array;
-        std::vector<double> targetYPowerCell_array;
-        std::vector<double> targetDistanceMarker_array;
-        std::vector<double> targetDistancePowerCell_array;
-        std::vector<double> targetHeadingMarker_array;
-        std::vector<double> targetHeadingPowerCell_array;
+        double is_new_data;    
+        std::vector<double> object_id;
+        std::vector<double> distance;
+        std::vector<double> header;
+        std::vector<double> xcenter;
+        std::vector<double> ycenter;
         std::vector<double> currTargetX;
         std::vector<double> currTargetY;
         std::vector<double> currDistanceMarker;

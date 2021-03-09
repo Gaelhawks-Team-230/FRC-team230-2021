@@ -63,27 +63,28 @@ frc::SmartDashboard::PutNumber("Target Heading Power Cell Translation", targetTr
 
 void VisionPi::Analyze()
 {
-    targetIdentify_array = table->GetNumberArray("ti", []);
-    targetXMarker_array = table->GetNumberArray("txm", []);
-    targetXPowerCell_array = table->GetNumberArray("txp"[]);
-    targetYMarker_array = table->GetNumberArray("tym", []);
-    targetYPowerCell_array = table->GetNumberArray("typ", []);
-    targetDistanceMarker_array = table->GetNumberArray("tdm",[]);
-    targetDistancePowerCell_array = table->GetNumberArray("tdp", []);
-    targetHeadingMarker_array = table->GetNumberArray("thm",[]);
-    targetHeadingPowerCell_array = table->GetNumberArray("thp",[]);
+    is_new_data = table->GetNumber("state", 1);
+    if (is_new_data > 1)
+    {  
+        return;
+    }
+    table->PutNumber("state", 1);
+    object_id = table->GetNumberArray("id", []);
+    distance = table->GetNumberArray("distance", []);
+    header = table->GetNumberArray("head"[]);
+    xcenter = table->GetNumberArray("xcenter", []);
+    ycenter = table->GetNumberArray("ycenter", []);
+
 
 }
 bool VisionPi::SetCurrentTarget(int targetID)
 {
-    for (int i = 0; i < targetIdentify_array.size(); i++)
+    for (int i = 0; i < object_id.size(); i++)
     {
-        if (targetIdentify_array[i]==targetID)
+        if (object_id[i]==targetID)
         {
-            currTargetX = targetXMarker_array[i];
-            currTargetY = targetYMarker_array[i];
-            currDistanceMarker = targetDistanceMarker_array[i];
-            currHeadingMarker = targetHeadingMarker_array[i];
+            currTargetX = distance[i];
+            currTargetY = x_center[i];
 
             return true;
         }
