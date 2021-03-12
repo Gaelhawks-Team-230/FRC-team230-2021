@@ -16,7 +16,7 @@ c++
 -O2
 -nostdinc
 -I
-C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include
+C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include
 -I
 C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\c8e850653c2afd60a8151f1bf737926e\\wpilibc-cpp-2020.3.2-headers
 -I

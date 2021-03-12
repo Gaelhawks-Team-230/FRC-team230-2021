@@ -7,9 +7,9 @@
 #include "frc/smartdashboard/Smartdashboard.h"
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h"
-#include <frc/util/color.h>
-#include "rev/ColorSensorV3.h"
-#include "rev/ColorMatch.h"
+//#include <frc/util/color.h>
+//#include "rev/ColorSensorV3.h"
+//#include "rev/ColorMatch.h"
 #include <frc/Encoder.h>
 #include <frc/DigitalInput.h>
 #include <frc/ADXRS450_Gyro.h>
@@ -17,15 +17,14 @@
 #include <frc/DutyCycleEncoder.h>
 #include <frc/AnalogGyro.h>
 
-        
 //shooter
-#define SHOOTER_ENCODER_PULSE_COUNT     (1024.0)
-#define SHOOTER_DISTANCE_PER_PULSE      (1.0)
-#define SHOOTER_VEL_K                   (10.0*2.0*PI/2048)
+#define SHOOTER_ENCODER_PULSE_COUNT (1024.0)
+#define SHOOTER_DISTANCE_PER_PULSE (1.0)
+#define SHOOTER_VEL_K (10.0 * 2.0 * PI / 2048)
 
 //shrouding
-#define ANGLE_ENCODER_PULSE_COUNT    (1024.0)
-#define ANGLE_DISTANCE_PER_PULSE     (2.0*PI/2048)//(1.0)
+#define ANGLE_ENCODER_PULSE_COUNT (1024.0)
+#define ANGLE_DISTANCE_PER_PULSE (2.0 * PI / 2048) //(1.0)
 
 //turret
 /*#ifdef PRACTICE_BOT
@@ -38,11 +37,12 @@
 #else
 #define TURRET_ANALOG_OFFSET        (0.0)//(-254.0)
 #endif*/
-#define SPIN_ENCODER_PULSE_COUNT    (1024.0)
-#define SPIN_DISTANCE_PER_PULSE     (1.0)
-#define TURRET_DEGREE_RANGE         (360.0)
-#define TURRET_GYRO_READING_K       (-1.05)
+#define SPIN_ENCODER_PULSE_COUNT (1024.0)
+#define SPIN_DISTANCE_PER_PULSE (1.0)
+#define TURRET_DEGREE_RANGE (360.0)
+#define TURRET_GYRO_READING_K (-1.05)
 
+/*
 //climber
 //#define CLIMBER_ENCODER_PULSE_COUNT            (1024.0)
 #define CLIMB_EXTEND_DISTANCE_PER_PULE       (-24.0) //SENSOR DELTA TWO is 4 ft
@@ -52,16 +52,17 @@
 //color wheel
 #define COLOR_ENCODER_PULSE_COUNT    (1024.0)
 #define COLOR_DISTANCE_PER_PULSE     (1.0)
+*/
 
 //drivetrain
-#define WHEEL_CIRCUMFERENCE          (6.0*PI)  //inches
-#define DRIVE_ENCODER_PULSE_COUNT    (2048.0)
-#define DRIVE_GEAR_RATIO             (8.45)
-#define DRIVE_DISTANCE_PER_PULSE     (WHEEL_CIRCUMFERENCE/(DRIVE_ENCODER_PULSE_COUNT*DRIVE_GEAR_RATIO))
-#define MAX_PERIOD                   (1.0)
+#define WHEEL_CIRCUMFERENCE (6.0 * PI) //inches
+#define DRIVE_ENCODER_PULSE_COUNT (2048.0)
+#define DRIVE_GEAR_RATIO (8.45)
+#define DRIVE_DISTANCE_PER_PULSE (WHEEL_CIRCUMFERENCE / (DRIVE_ENCODER_PULSE_COUNT * DRIVE_GEAR_RATIO))
+#define MAX_PERIOD (1.0)
 
 //Death star
-#define DEATH_STAR_DISTANCE_PER_ROTATION   (360.0)
+#define DEATH_STAR_DISTANCE_PER_ROTATION (360.0)
 /*#ifdef PRACTICE_BOT
 #define DEATH_STAR_OFFSET       (-14.5)//(14.5)
 #else
@@ -72,7 +73,7 @@ class TalonXXI;
 
 class SensorState
 {
-    private:
+private:
         TalonXXI *mainRobot;
 
         int loopCount;
@@ -101,6 +102,7 @@ class SensorState
         double turretGyroAnglez;
         double turretGyroVel;
 
+        /*
         //climber
         frc::DutyCycleEncoder *climbDeliver;
         frc::Encoder *winch;
@@ -122,6 +124,7 @@ class SensorState
         char colorChar;
         std::string colorString;
         double confidence;
+        */
 
         //drivetrain
         ctre::phoenix::motorcontrol::can::WPI_TalonFX *leftDriveFalcon;
@@ -137,9 +140,9 @@ class SensorState
         double leftRawReading;
         double rightRawReading;
 
-//#ifdef USE_GYRO
+        //#ifdef USE_GYRO
         frc::ADXRS450_Gyro *driveGyro;
-//#endif
+        //#endif
         double gyroVelDRV;
         double gyroReadingDRV;
         double oldGyroReadingDRV;
@@ -151,14 +154,14 @@ class SensorState
         frc::DigitalInput *cellSensor3;
         frc::DigitalInput *cellSensor4;
 
-        frc::DutyCycleEncoder *deathStar; 
+        frc::DutyCycleEncoder *deathStar;
         double deathStarAngleDegrees;
         double deathStarAngleDegreesz;
         double deathStarDegreesPerSec;
 
-    public:
-        SensorState(TalonXXI* pRobot);
-        
+public:
+        SensorState(TalonXXI *pRobot);
+
         //Robot Functions
         void LocalReset(void);
         void StartingConfig(void);
@@ -176,7 +179,7 @@ class SensorState
         //void ResetDeathStarEncoder(void); // not needed for DutyCycleEncoder
 
         //shooter
-        void InitShooterFalcon (ctre::phoenix::motorcontrol::can::WPI_TalonFX *shooterMotor);
+        void InitShooterFalcon(ctre::phoenix::motorcontrol::can::WPI_TalonFX *shooterMotor);
         inline double GetPosRadians_Shooter() { return shooterPosRadians; };
         inline double GetPosRadPerSec_Shooter() { return shooterRadPerSec; };
 
@@ -191,7 +194,13 @@ class SensorState
         inline double GetAngleGyro_Turret() { return turretGyroAngle; };
         inline double GetVelGyro_Turret() { return turretGyroVel; };
         inline double GetVelGyro_TurretDir() { return turretGyro->GetRate(); };
-        
+
+        /* inline double GetAngle_Turret() { return turretCurrentAngle; };
+        inline double GetAngleRadians_Turret() { return turretAngleRadians; };
+        inline double GetAngleRadPerSec_Turret() { return turretRadPerSec; };
+        inline double GetDegreesPerSec_Turret() { return turretDegreesPerSec; };*/
+
+        /*
         //climber
         inline double GetClimbExtendDis() { return climbDis; };
         inline double GetClimbWinchDis() { return winchDist; };
@@ -200,15 +209,16 @@ class SensorState
         //color wheel
         inline frc::Color GetColorSensorReading() { return matchedColor; };
         inline char GetColorChar() {return colorChar; };
+        */
 
         //drivetrain
-        void InitDriveFalcons (ctre::phoenix::motorcontrol::can::WPI_TalonFX *leftMotor, ctre::phoenix::motorcontrol::can::WPI_TalonFX *rightMotor);
+        void InitDriveFalcons(ctre::phoenix::motorcontrol::can::WPI_TalonFX *leftMotor, ctre::phoenix::motorcontrol::can::WPI_TalonFX *rightMotor);
         inline double GetAverageDriveDis() { return averageWheelDisDrive; };
         inline double GetLeftDriveDis() { return leftWheelDisDrive; };
         inline double GetRightDriveDis() { return rightWheelDisDrive; };
         inline double GetAverageDriveVel() { return currentDriveVel; };
         inline double GetOldDriveDis() { return oldDriveDis; };
-        
+
         inline double GetDriveGyroVelocity() { return gyroVelDRV; };
         inline double GetDriveGyroVelDirect() { return driveGyro->GetRate(); };
         inline double GetDriveGyroAngle() { return gyroReadingDRV; };

@@ -29,11 +29,12 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   turret = new ShooterTurret(this);
  
   collector = new CellCollector(this);
-  climb = new Climber(this);
+  //climb = new Climber(this);
 //#endif
   deathStar = new DeathStar(this);
-  lightStrip = new LightController(this);
-  colorWheel = new WheelOfFortune(this);
+  //lightStrip = new LightController(this);
+  //colorWheel = new WheelOfFortune(this);
+  camera = new VisionPi(this);
 
   loopCount = 0;
   
@@ -195,7 +196,7 @@ void TalonXXI::TeleopInit()
   turret->LocalReset();
   drive->GyroOn();
   limelight->TurnOffLED();
-  climb->LocalReset();
+  //climb->LocalReset();
   loopCount = 0;
   xstartPeriodic = 0.0;
   xendPeriodic = 0.0;
@@ -298,20 +299,20 @@ void TalonXXI::TeleopPeriodic()
     turret->GiveGoalAngle(TURRET_FACE_BACK_POS);
     shooter->GiveShroudGoalAngle(SHROUD_BEHIND_COLOR_WHEEL_ANGLE);
   }
-  if(userInput->GetFlightControllerButton(COLOR_SPIN_BUTTON) == kPressing)
+  /*if(userInput->GetFlightControllerButton(COLOR_SPIN_BUTTON) == kPressing)
   {
     colorWheel->StartWheelRotate();
   }
   if(userInput->GetFlightControllerButton(COLOR_SPIN_BUTTON) == kReleasing)
   {
     colorWheel->SetIdleMode();
-  }
+  }*/
   if(userInput->GamepadBtnPushed(SHOOTER_SPIN_UP_BUTTON))
   {
     shooter->GiveShooterGoalVel(SHOOTER_COLOR_WHEEL_VEL);
     //shooter->GiveShooterGoalVel(200.0);
   }
-  if(userInput->GetDpadUpPushed())
+  /*if(userInput->GetDpadUpPushed())
   {
     climb->MoveExtender(1.0);
   }
@@ -323,10 +324,10 @@ void TalonXXI::TeleopPeriodic()
   {
     climb->MoveExtender(0.0);
   }
-  /*if(userInput->GetDpadRightButton())
+  if(userInput->GetDpadRightButton())
   {
     climb->GiveGoalPos(CLIMB_MID_DISTANCE);
-  }*/
+  }
   if(userInput->GetDpadLeftButton())
   {
     climb->MoveWinch(0.7);
@@ -335,11 +336,11 @@ void TalonXXI::TeleopPeriodic()
   {
     climb->MoveWinch(0.0);
   }
-
+*/
  // limelight->TakeSnapshot(userInput->FlightCtrlBtnPushed(LIMELIGHT_SNAPSHOT_BUTTON));
   
   shooter->ManualShroudAdjust(-1.0*userInput->GetGamepadAxis(SHROUD_AXIS));
-  colorWheel->ManualWheelMove(userInput->GetGamepadAxis(COLOR_WHEEL_AXIS));
+  //colorWheel->ManualWheelMove(userInput->GetGamepadAxis(COLOR_WHEEL_AXIS));
   xendButtons = frc::GetTime();
 
 // shooter->TestingShooter(userInput->GetGamepadAxis(0));
@@ -416,9 +417,9 @@ void TalonXXI::ServiceDash()
     limelight->UpdateDash();
     deathStar->UpdateDash();
     collector->UpdateDash();
-    colorWheel->UpdateDash();
+    //colorWheel->UpdateDash();
   //#endif
-    climb->UpdateDash();
+    //climb->UpdateDash();
   }
   else
   {
@@ -434,10 +435,10 @@ void TalonXXI::CommunityService()
   shooter->Service();
   turret->Service();
   deathStar->Service();
-  lightStrip->Service();
+  //lightStrip->Service();
   collector->Service();
-  colorWheel->Service();
-  climb->Service();
+  //colorWheel->Service();
+  //climb->Service();
 }
 
 void TalonXXI::Omnicide()
@@ -449,9 +450,9 @@ void TalonXXI::Omnicide()
   limelight->StopAll();
   deathStar->StopAll();
   collector->StopAll();
-  colorWheel->StopAll();
+  //colorWheel->StopAll();
   drive->StopAll();
-  climb->StopAll();
+  //climb->StopAll();
 }
 
 double TalonXXI::Limit(double min, double max, double curValue)
@@ -480,9 +481,9 @@ void TalonXXI::RobotStartingConfig()
   limelight->StartingConfig();
   deathStar->StartingConfig();
   collector->StartingConfig();
-  colorWheel->StartingConfig();
+  //colorWheel->StartingConfig();
   drive->StartingConfig();
-  climb->StartingConfig();
+  //climb->StartingConfig();
 }
 
 
