@@ -5,5 +5,12 @@
     "component": "frcUserProgram",
     "debugfile": "frcCpp_roborio.debugconfig",
     "language": "cpp"
+  },
+  {
+    "artifact": "frcCpp (in project FRC-team230-2021)",
+    "target": "roborio",
+    "component": "frcUserProgram",
+    "debugfile": "frcCpp_roborio.debugconfig",
+    "language": "cpp"
   }
 ]

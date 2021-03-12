@@ -31,10 +31,10 @@
 #include "Drivetrain.h"
 #include "DeathStar.h"
 #include "LimeLight.h"
-//#include "WheelOfFortune.h"
+// #include "WheelOfFortune.h"
+#include "VisionPi.h"
 
 #include "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
-#include "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h"
 #include "ctre/phoenix/motorcontrol/StatorCurrentLimitConfiguration.h"
 
 class TalonXXI : public frc::TimedRobot
@@ -56,6 +56,7 @@ public:
   Climber *climb;
   //#endif
   DeathStar *deathStar;
+  VisionPi *camera;
   LightController *lightStrip;
 
   double addedDrive;
