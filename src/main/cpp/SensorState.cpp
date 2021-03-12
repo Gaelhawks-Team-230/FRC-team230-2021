@@ -32,7 +32,7 @@ SensorState::SensorState(TalonXXI *pRobot)
     m_colorMatcher.AddColorMatch(kRedTarget);
     m_colorMatcher.AddColorMatch(kYellowTarget);
     */
-    colorString = "";
+    //colorString = "";
 
     //drivetrain
     leftDriveFalcon = NULL;
@@ -168,7 +168,7 @@ void SensorState::UpdateDash()
     frc::SmartDashboard::PutNumber("Blue", detectedColor.blue);
     frc::SmartDashboard::PutNumber("Confidence", confidence);
     */
-    frc::SmartDashboard::PutString("color seen:", colorString);
+    //frc::SmartDashboard::PutString("color seen:", colorString);
 
     //drivetrain
     frc::SmartDashboard::PutNumber("Drive Left Drive Dis:", leftWheelDisDrive);

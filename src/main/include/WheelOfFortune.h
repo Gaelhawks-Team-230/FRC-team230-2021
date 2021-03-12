@@ -1,4 +1,4 @@
-
+/*
 #ifndef WHEELOFFORTUNE_H_
 #define WHEELOFFORTUNE_H_
 
@@ -79,3 +79,4 @@ class WheelOfFortune
         void Testing(double);
 };
 #endif /*WheelOfFortune_H_*/
+*/

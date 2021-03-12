@@ -1,3 +1,4 @@
+/*
 #ifndef LIGHTCONTROLLER_H_
 #define LIGHTCONTROLLER_H_
 
@@ -30,3 +31,4 @@ class LightController
 
 };
 #endif /*LIGHTCONTROLLER_H_*/
+*/

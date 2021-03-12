@@ -52,12 +52,12 @@ public:
   ShooterTurret *turret;
   LimelightCamera *limelight;
   CellCollector *collector;
-  WheelOfFortune *colorWheel;
-  Climber *climb;
+  //WheelOfFortune *colorWheel;
+  //Climber *climb;
   //#endif
   DeathStar *deathStar;
   VisionPi *camera;
-  LightController *lightStrip;
+  //LightController *lightStrip;
 
   double addedDrive;
   double addedRotate;
