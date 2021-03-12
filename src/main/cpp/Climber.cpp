@@ -1,3 +1,4 @@
+/*
 #include "Common.h"
 #include "Climber.h"
 
@@ -87,7 +88,7 @@ void Climber::MoveExtender(double input)
     {
         goalPos = extendPos;
         isManualMove = true;
-    }*/
+    }
     if(input != 0.0)
     {
         //goalPos = goalPos + TalonXXI::Sign(input)*CLIMBER_MANUAL_DELTA;
@@ -137,3 +138,4 @@ void Climber::WinchTesting(double input)
     winchMotorCmd = TalonXXI::Limit(-0.6, 0.6, winchMotorCmd);
 }
 #endif
+*/
