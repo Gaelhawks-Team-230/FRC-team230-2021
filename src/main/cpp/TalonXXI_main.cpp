@@ -34,6 +34,7 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   deathStar = new DeathStar(this);
   lightStrip = new LightController(this);
   colorWheel = new WheelOfFortune(this);
+  camera = new VisionPi(this);
 
   loopCount = 0;
   

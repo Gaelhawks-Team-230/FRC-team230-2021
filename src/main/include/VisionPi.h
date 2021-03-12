@@ -29,24 +29,26 @@ class VisionPi
         std::vector<double> header;
         std::vector<double> xcenter;
         std::vector<double> ycenter;
-        std::vector<double> currTargetX;
-        std::vector<double> currTargetY;
-        std::vector<double> currDistanceMarker;
-        std::vector<double> currHeadingMarker;
+        double currTargetX;
+        double currTargetY;
+        double currDistanceMarker;
+        double currHeadingMarker;
 
     public:
         //Constructer
         VisionPi(TalonXXI* pRobot);
 
         //RobotFunctions
-        void LocalReset(void)
-        void StartingConfig(void)
-        void StopAll(void)
-        void UpdateDash(void)
-        void Analyze (void)
-        bool SetCurrentTarget(int TargetID)
-        double GetCurrTargetX(void)
-        double GetCurrTargetY(void)
-        double GetCurrDistanceMarker(void)
-        double GetCurrHeadingMarker(void)
-}
+        void LocalReset(void);
+        void StartingConfig(void);
+        void StopAll(void);
+        void UpdateDash(void);
+        void Analyze (void);
+        bool SetCurrentTarget(int TargetID);
+        double GetCurrTargetX(void);
+        double GetCurrTargetY(void);
+        double GetCurrDistanceMarker(void);
+        double GetCurrHeadingMarker(void);
+};
+
+#endif

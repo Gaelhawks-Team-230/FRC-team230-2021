@@ -2,29 +2,24 @@
 #include "VisionPi.h"
 
 
-VisionPi::Visionpi(TalonXXI* pRobot)
+VisionPi::VisionPi(TalonXXI* pRobot)
 {
     mainRobot = pRobot;
     table = nt::NetworkTableInstance::GetDefault().GetTable("VisionPi");
     LocalReset();
 }
 
-void Sample::LocalReset()
+void VisionPi::LocalReset()
 {
-    targetIdentify = []
-    targetXMarker = []
-    targetXPowerCell = []
-    targetYMarker = []
-    targetYPowerCell = []
-    targetDistanceMarker = []
-    targetDistancePowerCell = []
-    targetHeadingMarker = []
-    targetHeadingPowerCell = []
-    currTargetX = 0
-    currTargetY = 0
-    currDistanceMarker = 0
-    currHeadingMarker = 0;
-    TargetTranslationReset();
+    object_id.clear();
+    distance.clear();
+    header.clear();
+    xcenter.clear();
+    ycenter.clear();
+    currTargetX = 0.0;
+    currTargetY = 0.0;
+    currDistanceMarker = 0.0;
+    currHeadingMarker = 0.0;
 }
 
 void VisionPi::StartingConfig()
@@ -39,15 +34,15 @@ void VisionPi::StopAll()
 
 void VisionPi::UpdateDash()
 {
-frc::SmartDashboard::PutNumber("Target Identified", targetIdentify);
-frc::SmartDashboard::PutNumber("Target X Marker", targetXMarker);
-frc::SmartDashboard::PutNumber("Target X Power Cell", targetXPowerCell);
-frc::SmartDashboard::PutNumber("Target Y Marker", targetYMarker);
-frc::SmartDashboard::PutNumber("Target Y Power Cell", targetYPowerCell);
-frc::SmartDashboard::PutNumber("Target Distance Marker", targetDistanceMarker);
-frc::SmartDashboard::PutNumber("Target Distance Power Cell", targetDistancePowerCell);
-frc::SmartDashboard::PutNumber("Target Heading Marker", targetHeadingMarker);
-frc::SmartDashboard::PutNumber("Target Heading Power Cell", targetHeadingPowerCell);
+// frc::SmartDashboard::PutNumber("Target Identified", targetIdentify);
+// frc::SmartDashboard::PutNumber("Target X Marker", targetXMarker);
+// frc::SmartDashboard::PutNumber("Target X Power Cell", targetXPowerCell);
+// frc::SmartDashboard::PutNumber("Target Y Marker", targetYMarker);
+// frc::SmartDashboard::PutNumber("Target Y Power Cell", targetYPowerCell);
+// frc::SmartDashboard::PutNumber("Target Distance Marker", targetDistanceMarker);
+// frc::SmartDashboard::PutNumber("Target Distance Power Cell", targetDistancePowerCell);
+// frc::SmartDashboard::PutNumber("Target Heading Marker", targetHeadingMarker);
+// frc::SmartDashboard::PutNumber("Target Heading Power Cell", targetHeadingPowerCell);
 /*
 frc::SmartDashboard::PutNumber("Target Identified Translation", targetTransArray[0]);
 frc::SmartDashboard::PutNumber("Target X Marker Translation", targetTransArray[1]);
@@ -64,27 +59,26 @@ frc::SmartDashboard::PutNumber("Target Heading Power Cell Translation", targetTr
 void VisionPi::Analyze()
 {
     is_new_data = table->GetNumber("state", 1);
-    if (is_new_data > 1)
+    if (is_new_data > 0)
     {  
         return;
     }
     table->PutNumber("state", 1);
-    object_id = table->GetNumberArray("id", []);
-    distance = table->GetNumberArray("distance", []);
-    header = table->GetNumberArray("head"[]);
-    xcenter = table->GetNumberArray("xcenter", []);
-    ycenter = table->GetNumberArray("ycenter", []);
-
-
+    object_id = table->GetNumberArray("id", object_id);
+    distance = table->GetNumberArray("distance", distance);
+    header = table->GetNumberArray("head", header);
+    xcenter = table->GetNumberArray("xcenter", xcenter);
+    ycenter = table->GetNumberArray("ycenter", ycenter);
 }
+
 bool VisionPi::SetCurrentTarget(int targetID)
 {
-    for (int i = 0; i < object_id.size(); i++)
+    for (unsigned int i = 0; i < object_id.size(); i++)
     {
         if (object_id[i]==targetID)
         {
-            currTargetX = distance[i];
-            currTargetY = x_center[i];
+            currTargetX = xcenter[i];
+            currTargetY = ycenter[i];
 
             return true;
         }
