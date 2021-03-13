@@ -1,4 +1,5 @@
-//#define NEEDS_SENSOR
+
+/*//#define NEEDS_SENSOR
 
 #include "TalonXXI_main.h"
 #include "WheelOfFortune.h"
@@ -179,7 +180,7 @@ void WheelOfFortune::Service()
             {
                motorCommand = SPIN_MOTOR_COMMAND;
             }
-            break;*/
+            break;
             
     } 
 #endif 
@@ -218,3 +219,4 @@ void WheelOfFortune::Testing(double input)
     motorCommand = TalonXXI::Limit(-0.8, 0.8, motorCommand);
 }
 #endif
+*/

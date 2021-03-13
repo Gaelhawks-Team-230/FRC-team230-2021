@@ -1,3 +1,4 @@
+/*
 #include "Common.h"
 #include "LightController.h"
 
@@ -43,7 +44,7 @@ void LightController::Service()
     light1->Set(true);
     light2->Set(true);
     light3->Set(true);
-    /*
+
     loopCount++;
     cellCount = (int) (loopCount/100);
     printf("cellCount %d\n", cellCount);
@@ -102,4 +103,3 @@ void LightController::Service()
         light3->Set(false);
     }
     */
-} 

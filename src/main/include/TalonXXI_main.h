@@ -16,14 +16,14 @@
 #include "ctre/Phoenix.h"
 #include <frc/PWMVictorSPX.h>
 #include <frc/VictorSP.h>
-#include "frc/smartdashboard/Smartdashboard.h" 
-#include "networktables/NetworkTable.h" 
+#include "frc/smartdashboard/Smartdashboard.h"
+#include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h"
 #include "Autonomous.h"
 #include "BallShooter.h"
 #include "ShooterTurret.h"
 #include "CellCollector.h"
-#include "Climber.h"
+//#include "Climber.h"
 #include "LimeLight.h"
 #include "SensorState.h"
 #include "JoystickState.h"
@@ -31,33 +31,33 @@
 #include "Drivetrain.h"
 #include "DeathStar.h"
 #include "LimeLight.h"
-#include "WheelOfFortune.h"
-#include "LightController.h"
+// #include "WheelOfFortune.h"
+#include "VisionPi.h"
 
 #include "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
-#include "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h"
 #include "ctre/phoenix/motorcontrol/StatorCurrentLimitConfiguration.h"
 
-
-class TalonXXI : public frc::TimedRobot {
- public:
+class TalonXXI : public frc::TimedRobot
+{
+public:
   TalonXXI();
   frc::PowerDistributionPanel *pdp;
   SensorState *surveillance;
   JoystickState *userInput;
-//#ifdef TEST_DRIVE
-   Drivetrain *drive;
-//#endif
-//#else
+  //#ifdef TEST_DRIVE
+  Drivetrain *drive;
+  //#endif
+  //#else
   BallShooter *shooter;
   ShooterTurret *turret;
   LimelightCamera *limelight;
   CellCollector *collector;
-  WheelOfFortune *colorWheel;
-  Climber *climb;
-//#endif
+  //WheelOfFortune *colorWheel;
+  //Climber *climb;
+  //#endif
   DeathStar *deathStar;
-  LightController *lightStrip;
+  VisionPi *camera;
+  //LightController *lightStrip;
 
   double addedDrive;
   double addedRotate;
@@ -111,7 +111,7 @@ class TalonXXI : public frc::TimedRobot {
   void FeederShootSecond(void);
   void ModeSelection(bool);
 
- private:
+private:
   frc::SendableChooser<int> *AutoPositionChooser;
   frc::SendableChooser<int> *AutoBallNumber;
   int autoStage;
@@ -141,8 +141,6 @@ class TalonXXI : public frc::TimedRobot {
   double isGyroOn;
   bool isInTeleop;
   int loopCount;
-  
-  bool isJoystickCountInitialized;
 
-  
+  bool isJoystickCountInitialized;
 };

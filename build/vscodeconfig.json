@@ -34,7 +34,7 @@
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\111106b94962c11e3a525cf3fba402f0\\ColorSensorV3-cpp-1.0.1-headers\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\07d59ebd6b9d0ec2216b937905ea0d46\\wpilibNewCommands-cpp-2020.3.2-headers\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\b6c9066c5fa78a131257b3b34624fdbf\\wpilibOldCommands-cpp-2020.3.2-headers\\",
-      "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\",
+      "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\a0c90a785a654f6a73456c81ed12bd6e\\wpilibc-cpp-2020.3.2-sources\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\aca10e3b8404f80b35c6d6aebf3a7d53\\ntcore-cpp-2020.3.2-sources\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\f7986e5360a1260c0a4fa2c28ecc0365\\hal-cpp-2020.3.2-sources\\",
@@ -79,7 +79,7 @@
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\111106b94962c11e3a525cf3fba402f0\\ColorSensorV3-cpp-1.0.1-headers\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\07d59ebd6b9d0ec2216b937905ea0d46\\wpilibNewCommands-cpp-2020.3.2-headers\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\b6c9066c5fa78a131257b3b34624fdbf\\wpilibOldCommands-cpp-2020.3.2-headers\\",
-      "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\"
+      "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\"
     ],
     "binaries": [
       {
@@ -88,7 +88,7 @@
           {
             "source": {
               "srcDirs": [
-                "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\cpp\\"
+                "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\cpp\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -98,7 +98,7 @@
             },
             "exportedHeaders": {
               "srcDirs": [
-                "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\"
+                "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -146,7 +146,7 @@
           "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\111106b94962c11e3a525cf3fba402f0\\ColorSensorV3-cpp-1.0.1-headers\\",
           "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\07d59ebd6b9d0ec2216b937905ea0d46\\wpilibNewCommands-cpp-2020.3.2-headers\\",
           "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\b6c9066c5fa78a131257b3b34624fdbf\\wpilibOldCommands-cpp-2020.3.2-headers\\",
-          "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\"
+          "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\"
         ],
         "sharedLibrary": false,
         "executable": true
@@ -156,7 +156,7 @@
       {
         "source": {
           "srcDirs": [
-            "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\cpp\\"
+            "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\cpp\\"
           ],
           "includes": [
             "**/*.cpp",
@@ -188,7 +188,7 @@
       {
         "source": {
           "srcDirs": [
-            "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\"
+            "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\"
           ],
           "includes": [
             "**/*.cpp",
@@ -257,7 +257,7 @@
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\111106b94962c11e3a525cf3fba402f0\\ColorSensorV3-cpp-1.0.1-headers\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\07d59ebd6b9d0ec2216b937905ea0d46\\wpilibNewCommands-cpp-2020.3.2-headers\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\b6c9066c5fa78a131257b3b34624fdbf\\wpilibOldCommands-cpp-2020.3.2-headers\\",
-      "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\",
+      "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\a0c90a785a654f6a73456c81ed12bd6e\\wpilibc-cpp-2020.3.2-sources\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\aca10e3b8404f80b35c6d6aebf3a7d53\\ntcore-cpp-2020.3.2-sources\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\f7986e5360a1260c0a4fa2c28ecc0365\\hal-cpp-2020.3.2-sources\\",
@@ -302,7 +302,7 @@
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\111106b94962c11e3a525cf3fba402f0\\ColorSensorV3-cpp-1.0.1-headers\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\07d59ebd6b9d0ec2216b937905ea0d46\\wpilibNewCommands-cpp-2020.3.2-headers\\",
       "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\b6c9066c5fa78a131257b3b34624fdbf\\wpilibOldCommands-cpp-2020.3.2-headers\\",
-      "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\"
+      "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\"
     ],
     "binaries": [
       {
@@ -311,7 +311,7 @@
           {
             "source": {
               "srcDirs": [
-                "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\cpp\\"
+                "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\cpp\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -321,7 +321,7 @@
             },
             "exportedHeaders": {
               "srcDirs": [
-                "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\"
+                "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -369,7 +369,7 @@
           "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\111106b94962c11e3a525cf3fba402f0\\ColorSensorV3-cpp-1.0.1-headers\\",
           "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\07d59ebd6b9d0ec2216b937905ea0d46\\wpilibNewCommands-cpp-2020.3.2-headers\\",
           "C:\\Users\\gaelhawks\\.gradle\\caches\\transforms-2\\files-2.1\\b6c9066c5fa78a131257b3b34624fdbf\\wpilibOldCommands-cpp-2020.3.2-headers\\",
-          "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\"
+          "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\"
         ],
         "sharedLibrary": false,
         "executable": true
@@ -379,7 +379,7 @@
       {
         "source": {
           "srcDirs": [
-            "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\cpp\\"
+            "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\cpp\\"
           ],
           "includes": [
             "**/*.cpp",
@@ -411,7 +411,7 @@
       {
         "source": {
           "srcDirs": [
-            "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2020\\src\\main\\include\\"
+            "C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\src\\main\\include\\"
           ],
           "includes": [
             "**/*.cpp",
