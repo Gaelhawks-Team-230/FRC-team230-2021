@@ -84,9 +84,8 @@ void TalonXXI::RobotInit()
   AutoBallNumber->SetDefaultOption("Level One", LEVEL_ONE);
   AutoBallNumber->AddOption("Level Two", LEVEL_TWO);
   frc::SmartDashboard::PutData("Level: ", AutoBallNumber);
-
   ServiceDash();
-}
+  }
 
 void TalonXXI::DisabledInit()
 {
@@ -217,6 +216,7 @@ void TalonXXI::TeleopPeriodic()
   loopCount++;
   xstartPeriodic = frc::GetTime();
   surveillance->Analyze();
+  camera->Analyze();
   xstartOtherAnalyze = frc::GetTime();
   limelight->AutoHorizontalOffset(-1);userInput->Analyze();
   if(turret->IsLimelightTracking())

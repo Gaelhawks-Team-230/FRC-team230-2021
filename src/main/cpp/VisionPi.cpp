@@ -5,7 +5,7 @@
 VisionPi::VisionPi(TalonXXI* pRobot)
 {
     mainRobot = pRobot;
-    table = nt::NetworkTableInstance::GetDefault().GetTable("VisionPi");
+    cameraTable = nt::NetworkTableInstance::GetDefault().GetTable("VisionPi");
     LocalReset();
 }
 
@@ -59,10 +59,11 @@ frc::SmartDashboard::PutNumber("Target Heading Power Cell Translation", targetTr
 void VisionPi::Analyze()
 {
     is_new_data = table->GetNumber("state", 1);
-    if (is_new_data > 0)
+    if (is_new_data > 0) //Old Data is 1, New Data is 0
     {  
         return;
     }
+    printf("visionPi state: %f\n", is_new_data);
     table->PutNumber("state", 1);
     object_id = table->GetNumberArray("id", object_id);
     distance = table->GetNumberArray("distance", distance);

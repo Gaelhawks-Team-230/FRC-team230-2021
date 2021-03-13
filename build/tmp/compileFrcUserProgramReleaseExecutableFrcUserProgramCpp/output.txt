@@ -1,38 +1,4 @@
 See file:///C:/Users/gaelhawks/Documents/230-InfiniteRecharge2021/FRC-team230-2021/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
-compiling Autonomous.cpp successful.
-
-compiling Climber.cpp successful.
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Climber.cpp:87:5: warning: "/*" within comment [-Wcomment]
-     /*if(input != 0.0 && !isManualMove)
-      
-
-compiling LightController.cpp successful.
-
-compiling JoystickState.cpp successful.
-
-compiling Sample.cpp successful.
-
-compiling CellCollector.cpp successful.
-
-compiling Drivetrain.cpp successful.
-
-compiling DeathStar.cpp successful.
-
-compiling WheelOfFortune.cpp successful.
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\WheelOfFortune.cpp:174:13: warning: "/*" within comment [-Wcomment]
-             /*if ((currentColor) == goalColor)
-              
-
-compiling LimeLight.cpp successful.
-
-compiling SensorState.cpp successful.
-
-compiling ShooterTurret.cpp successful.
-
-compiling VisionPi.cpp successful.
-
-compiling BallShooter.cpp successful.
-
 compiling TalonXXI_main.cpp successful.
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp: In constructor 'TalonXXI::TalonXXI()':
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp:17:41: warning: 'frc::TimedRobot::TimedRobot(double)' is deprecated: Use constructor with unit-safety instead. [-Wdeprecated-declarations]

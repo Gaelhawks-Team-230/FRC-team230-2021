@@ -130,7 +130,7 @@ void Drivetrain::DriveControl(double driveCmd, double rotateCmd, double forcedDr
 
     loopCount++;
     //printf("%d %f %f %f %f %f \n", loopCount, rotateCmd, rotateCmd*COMMAND_RATE_MAX, driveCmd, gyroVel);
-    printf("%d %f %f %f %f %f %f \n", loopCount, driveMod, localSurveillance->GetLeftDriveDis(), localSurveillance->GetRightDriveDis(), localSurveillance->GetAverageDriveDis(), localSurveillance->GetOldDriveDis(), localSurveillance->GetAverageDriveVel());
+    //printf("%d %f %f %f %f %f %f \n", loopCount, driveMod, localSurveillance->GetLeftDriveDis(), localSurveillance->GetRightDriveDis(), localSurveillance->GetAverageDriveDis(), localSurveillance->GetOldDriveDis(), localSurveillance->GetAverageDriveVel());
 }
 
 void Drivetrain::GyroOff()

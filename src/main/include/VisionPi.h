@@ -22,7 +22,7 @@ class VisionPi
         TalonXXI *mainRobot;
 
         //VisionPi
-        std::shared_ptr<NetworkTable> table;
+        std::shared_ptr<NetworkTable> cameraTable;
         double is_new_data;    
         std::vector<double> object_id;
         std::vector<double> distance;
