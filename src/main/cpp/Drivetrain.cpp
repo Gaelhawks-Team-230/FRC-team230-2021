@@ -50,6 +50,10 @@ void Drivetrain::LocalReset()
     driveModz = 0.0;
     postShapingRotate = 0.0;
     
+    driveCurVel = 0.0;
+    driveCurErr = 0.0;
+    driveErrInt = 0.0;
+
 	gyroAngle = 0;
 
     loopCount = 0;
@@ -70,8 +74,9 @@ void Drivetrain::StopAll()
 
 
 
-void Drivetrain::DriveControl(double driveCmd, double rotateCmd, double forcedDrive, double forcedRotate,bool isAuto)
+void Drivetrain::DriveControl(double driveCmd, double rotateCmd, double forcedDrive, double forcedRotate,bool isAuto, bool isTraj, double velCmd)
 {
+    ReceiveVelInfo();
     postShapingRotate = rotateCmd;
     if(isAuto)
     {
@@ -98,10 +103,19 @@ void Drivetrain::DriveControl(double driveCmd, double rotateCmd, double forcedDr
             rotate = ROTATE_CONSTANT *rotateCmd;
         }
     }
-    
-    driveMod = driveModz + TalonXXI::Limit(-DRIVE_MAX_ACCEL, DRIVE_MAX_ACCEL, (driveCmd - driveModz)*DRIVE_OMEGA)*LOOPTIME;
-    driveModz = driveMod;
-    driveMod = driveMod + forcedDrive;
+    if(isTraj)
+    {
+        driveMod = VelControl(velCmd);
+    }
+    else
+    {
+        driveMod = driveModz + TalonXXI::Limit(-DRIVE_MAX_ACCEL, DRIVE_MAX_ACCEL, (driveCmd - driveModz)*DRIVE_OMEGA)*LOOPTIME;
+        driveModz = driveMod;
+        driveMod = driveMod + forcedDrive;
+        driveCurErr = 0.0;
+        driveErrInt = 0.0;
+        //driveMod = driveCmd;
+    }
     rotate = rotate + forcedRotate;
     //TESTING
    /* if(rotateCmd > 0.2)
@@ -127,10 +141,23 @@ void Drivetrain::DriveControl(double driveCmd, double rotateCmd, double forcedDr
     backLeftMotor->Set(ControlMode::PercentOutput, leftMotorCmd);
     frontRightMotor->Set(ControlMode::PercentOutput, rightMotorCmd);
     backRightMotor->Set(ControlMode::PercentOutput, rightMotorCmd);
-
     loopCount++;
     //printf("%d %f %f %f %f %f \n", loopCount, rotateCmd, rotateCmd*COMMAND_RATE_MAX, driveCmd, gyroVel);
-    //printf("%d %f %f %f %f %f %f \n", loopCount, driveMod, localSurveillance->GetLeftDriveDis(), localSurveillance->GetRightDriveDis(), localSurveillance->GetAverageDriveDis(), localSurveillance->GetOldDriveDis(), localSurveillance->GetAverageDriveVel());
+    //printf("%d %f %f %f %f %f %f \n", loopCount, driveCmd, velCmd, driveMod, driveCurVel, driveCurErr, driveErrInt);
+}
+
+double Drivetrain::VelControl(double driveVelCmd)
+{
+    driveCurErr = driveVelCmd - driveCurVel;
+    driveErrInt = driveErrInt + (driveCurErr*LOOPTIME);
+    driveErrInt = TalonXXI::Limit(DRIVE_LOW_LIMIT, DRIVE_HIGH_LIMIT, driveErrInt);
+    double newVelCmd = (DRIVE_ROBOT_K_BANDWIDTH/DRIVE_ROBOT_K)*((driveCurErr*DRIVE_ROBOT_TAU) + driveErrInt);
+    return newVelCmd;
+}
+
+void Drivetrain::ReceiveVelInfo()
+{
+    driveCurVel = -localSurveillance->GetAverageDriveVel()/12;
 }
 
 void Drivetrain::GyroOff()

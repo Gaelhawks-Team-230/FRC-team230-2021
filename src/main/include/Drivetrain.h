@@ -18,7 +18,13 @@ class SensorState;
 #define LOW_LIMIT                       (-HIGH_LIMIT)
 #define ROBOT_TAU                       (0.16)
 #define ROTATE_CONSTANT                 (0.3)//(0.2) //used when gyro off
-#define COMMAND_RATE_MAX                (150.0)//Radians/sec 
+#define COMMAND_RATE_MAX                (165.0)//(150.0)//Radians/sec 
+
+#define DRIVE_ROBOT_K_BANDWIDTH               (1.0)
+#define DRIVE_ROBOT_K                         (18.0)
+#define DRIVE_HIGH_LIMIT                      (ROBOT_K/ROBOT_K_BANDWIDTH)
+#define DRIVE_LOW_LIMIT                       (-HIGH_LIMIT)
+#define DRIVE_ROBOT_TAU                       (0.26)
 
 #define MAX_AUTO_ACCELERATION           (120.0*LOOPTIME)
 #define AUTO_ROTATE_NO_GYRO             (0.002)
@@ -60,19 +66,25 @@ class Drivetrain
 
         double driveMod;
         double driveModz;
-    
+
+        double driveCurVel;
+        double driveCurErr;
+        double driveErrInt;
+
     public:
         Drivetrain(TalonXXI* pRobot);
         //Functions
         void LocalReset(void);
         void StartingConfig(void);
         void StopAll(void);
-        void DriveControl(double, double, double, double, bool);
+        void DriveControl(double, double, double, double, bool, bool, double);
         double GyroControl(double);
+        double VelControl(double);
         void UpdateDash(void);
         void Service(void);
         void GyroOff(void);
         void GyroOn(void);
         void ReceiveGyroInfo(void);
+        void ReceiveVelInfo(void);
 };
 #endif /*Drivetrain_H_*/

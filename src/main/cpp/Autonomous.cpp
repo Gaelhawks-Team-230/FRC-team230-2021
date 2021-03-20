@@ -432,9 +432,54 @@ void TalonXXI::FeederShootSecond()
     }
 }
 
+void TalonXXI::TestSkillsChal()
+{
+    loopCount++;
+    switch(autoStage)
+    {
+        case 0:
+            driveCmd = 0.0; rotateCmd = 0.0;
+            //drive->LocalReset();
+            surveillance->ResetDriveEncoders();
+            loopCount = 0;
+            autoStage++;
+            isTraj = false;
+            break;
+        case 1:
+            isTraj = true;
+            if(!planner->IsPathComplete(loopCount))
+            {
+                std::vector<double> cmds =  planner->GetCurrentCmd(loopCount);
+            }
+            else
+            {
+                autoStage++;
+            }
+            
+            /*if (loopCount<TIME_TEST_AUTO)
+            {
+                velCmd = 5.0;
+            }
+            else
+            {
+                velCmd = 0.0;
+                loopCount = 0.0;
+                autoStage++;
+            }*/
+            break;
+        case 2:
+            isTraj = false;
+            driveCmd = 0.0; rotateCmd = 0.0;
+            autoMode = 0;
+            autoStage = 0;
+            loopCount = 0;
+            break;
+    }
+}
+
 void TalonXXI::ModeSelection(bool forcePrint)
 {
-    bool modeChange = false;
+    modeChange = false;
     const char* startPos;
     const char* autoLevel;
     
@@ -467,6 +512,29 @@ void TalonXXI::ModeSelection(bool forcePrint)
     {
         autoMode = 3;
         startPos = "CENTER";
+    }
+    else if(autoStartPosition == TRAJ_PLANNER)
+    {
+        autoMode = 8;
+        startPos = "SKILL";
+        /*if (autoBallNumber == BARREL_TRAJ)
+        {
+
+        }
+        else if (autoBallNumber == SLALOM_TRAJ)
+        {
+
+        }
+        else if (autoBallNumber == BOUNCE_TRAJ)
+        {
+            
+        }
+        else
+        {
+            
+        }*/
+        
+
     }
     else
     {

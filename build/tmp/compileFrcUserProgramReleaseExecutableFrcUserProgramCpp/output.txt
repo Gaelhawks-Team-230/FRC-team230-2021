@@ -1,4 +1,28 @@
 See file:///C:/Users/gaelhawks/Documents/230-InfiniteRecharge2021/FRC-team230-2021/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling Autonomous.cpp successful.
+
+compiling DeathStar.cpp successful.
+
+compiling Drivetrain.cpp successful.
+
+compiling CellCollector.cpp successful.
+
+compiling BallShooter.cpp successful.
+
+compiling LimeLight.cpp successful.
+
+compiling SensorState.cpp successful.
+
+compiling ShooterTurret.cpp successful.
+
+compiling TrajectoryPlan.cpp successful.
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TrajectoryPlan.cpp: In member function 'void TrajectoryPlan::PrintPath()':
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TrajectoryPlan.cpp:87:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for(int i= 0; i< plan.size(); i++)
+                   ~^~~~~~~~~~~~~
+
+compiling VisionPi.cpp successful.
+
 compiling TalonXXI_main.cpp successful.
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp: In constructor 'TalonXXI::TalonXXI()':
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp:17:41: warning: 'frc::TimedRobot::TimedRobot(double)' is deprecated: Use constructor with unit-safety instead. [-Wdeprecated-declarations]

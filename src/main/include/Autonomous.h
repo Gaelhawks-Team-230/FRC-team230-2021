@@ -12,5 +12,6 @@
 #define TIME_TURNING_TO_TRENCH          (1.0*N1SEC)
 #define DISTANCE_CENTER_TO_TRENCH       (65.0)
 #define DISTANCE_GRAB_BALLS_IN_TRENCH   (75.0)
+#define TIME_TEST_AUTO               (4.0*N1SEC)
 
 #endif /*Sample_H_*/

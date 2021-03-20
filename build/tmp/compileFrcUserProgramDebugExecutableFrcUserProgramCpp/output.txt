@@ -1,4 +1,37 @@
 See file:///C:/Users/gaelhawks/Documents/230-InfiniteRecharge2021/FRC-team230-2021/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
+compiling SensorState.cpp successful.
+
+compiling ShooterTurret.cpp successful.
+
+compiling Drivetrain.cpp successful.
+
+compiling CellCollector.cpp successful.
+
+compiling DeathStar.cpp successful.
+
+compiling LimeLight.cpp successful.
+
+compiling TalonXXI_main.cpp successful.
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp: In constructor 'TalonXXI::TalonXXI()':
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp:17:41: warning: 'frc::TimedRobot::TimedRobot(double)' is deprecated: Use constructor with unit-safety instead. [-Wdeprecated-declarations]
+ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
+                                         ^
+In file included from C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\include/TalonXXI_main.h:11:0,
+                 from C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp:11:
+C:\Users\gaelhawks\.gradle\caches\transforms-2\files-2.1\c8e850653c2afd60a8151f1bf737926e\wpilibc-cpp-2020.3.2-headers/frc/TimedRobot.h:53:12: note: declared here
+   explicit TimedRobot(double period);
+            ^~~~~~~~~~
+
 compiling VisionPi.cpp successful.
+
+compiling TrajectoryPlan.cpp successful.
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TrajectoryPlan.cpp: In member function 'void TrajectoryPlan::PrintPath()':
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TrajectoryPlan.cpp:87:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for(int i= 0; i< plan.size(); i++)
+                   ~^~~~~~~~~~~~~
+
+compiling BallShooter.cpp successful.
+
+compiling Autonomous.cpp successful.
 
 Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Users/gaelhawks/Documents/230-InfiniteRecharge2021/FRC-team230-2021/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.

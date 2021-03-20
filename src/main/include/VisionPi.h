@@ -20,19 +20,21 @@ class VisionPi
 {
     private:
         TalonXXI *mainRobot;
-
+        // const char* ServerArr[2] = {"PiIP","1735"};
+        
         //VisionPi
         std::shared_ptr<NetworkTable> cameraTable;
         double is_new_data;    
         std::vector<double> object_id;
         std::vector<double> distance;
-        std::vector<double> header;
+        std::vector<double> heading;
         std::vector<double> xcenter;
         std::vector<double> ycenter;
         double currTargetX;
         double currTargetY;
         double currDistanceMarker;
         double currHeadingMarker;
+        
 
     public:
         //Constructer
