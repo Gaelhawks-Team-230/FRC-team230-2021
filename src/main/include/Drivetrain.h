@@ -20,7 +20,7 @@ class SensorState;
 #define ROTATE_CONSTANT                 (0.3)//(0.2) //used when gyro off
 #define COMMAND_RATE_MAX                (165.0)//(150.0)//Radians/sec 
 
-#define DRIVE_ROBOT_K_BANDWIDTH               (1.0)
+#define DRIVE_ROBOT_K_BANDWIDTH               (4.0)
 #define DRIVE_ROBOT_K                         (18.0)
 #define DRIVE_HIGH_LIMIT                      (ROBOT_K/ROBOT_K_BANDWIDTH)
 #define DRIVE_LOW_LIMIT                       (-HIGH_LIMIT)

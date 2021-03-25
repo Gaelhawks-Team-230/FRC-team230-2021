@@ -123,6 +123,7 @@ private:
   int autoModeSecond;
   int autoStartPosition;
   int autoBallNumber;
+  int trajIndex;
   double delayTime;
   int delayCount;
   bool isDelay;

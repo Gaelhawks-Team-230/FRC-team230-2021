@@ -301,7 +301,7 @@ void SensorState::ReadDriveEncoders()
         averageWheelDisDrive = (rightWheelDisDrive + leftWheelDisDrive) / 2;
 
         currentDriveVel = (averageWheelDisDrive - oldDriveDis) / LOOPTIME;
-        //printf("%d %f %f %f %f %f \n", loopCount, leftWheelDisDrive, rightWheelDisDrive, averageWheelDisDrive, oldDriveDis, currentDriveVel);
+        //printf("%d %f %f %f \n", loopCount, leftWheelDisDrive, rightWheelDisDrive, gyroReadingDRV);
         oldDriveDis = averageWheelDisDrive;
     }
 }

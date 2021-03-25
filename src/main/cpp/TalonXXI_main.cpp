@@ -59,6 +59,7 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   delayCount = 0;
   isDelay = false;
   isInTeleop = false;
+  trajIndex = 0;
 
   addedDrive = 0.0;
   addedRotate = 0.0;
@@ -81,11 +82,11 @@ void TalonXXI::RobotInit()
   frc::SmartDashboard::PutNumber("Delay time", 0.0);
 
   AutoPositionChooser->AddOption("Feeder", FEEDER_POS);
-	AutoPositionChooser->SetDefaultOption("Center", CENTER_POS);
+	AutoPositionChooser->AddOption("Center", CENTER_POS);
 	AutoPositionChooser->AddOption("Trench", TRENCH_POS);
   AutoPositionChooser->AddOption("Do Nothing", DO_NOTHING);
   AutoPositionChooser->AddOption("Baseline", BASELINE);
-  AutoPositionChooser->AddOption("Trajectory", TRAJ_PLANNER);
+  AutoPositionChooser->SetDefaultOption("Trajectory", TRAJ_PLANNER);
 	frc::SmartDashboard::PutData("Position: ", AutoPositionChooser);
 
   AutoBallNumber->SetDefaultOption("Level One", LEVEL_ONE);
@@ -114,8 +115,11 @@ void TalonXXI::DisabledPeriodic()
   }
   if(!isPathRead)
   {
-    isPathRead = planner->ReadPath(autoBallNumber);
+    printf ("AutoBallNumber: %d \n", autoBallNumber);
+    printf ("Selected Value: %d \n", AutoBallNumber->GetSelected());
+    isPathRead = planner->ReadPath(AutoBallNumber->GetSelected());
   }
+  
 }
 
 void TalonXXI::InitializeAlliance()

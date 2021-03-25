@@ -48,16 +48,18 @@ bool TrajectoryPlan::ReadPath(int autoModeNum)
     const char delim = ',';
     // FILE *pFile;
     // pFile = fopen("/home/lvuser/deploy/example.txt","r");
+    plan.clear(); //clear vector here before it is read because vector will add to self otherwise
+    printf("Case: %d\n", autoModeNum);
     switch (autoModeNum)
     {
         case 9:
-            directory = "/home/lvuser/deploy/BounArr.txt";
+            directory = "/home/lvuser/deploy/Test.txt";
             break;
         case 10:
-            directory = "/home/lvuser/deploy/BounArr.txt";
+            directory = "/home/lvuser/deploy/BarrArr.txt";
             break;
         case 11:
-            directory = "/home/lvuser/deploy/BounArr.txt";
+            directory = "/home/lvuser/deploy/SlalArr.txt";
             break;
         case 12:
             directory = "/home/lvuser/deploy/BounArr.txt";
@@ -78,6 +80,7 @@ bool TrajectoryPlan::ReadPath(int autoModeNum)
         myfile.close();
         return true;
     }
+    printf("Vector Size: %d\n", plan.size());
     return false;
     
 }
@@ -101,6 +104,7 @@ bool TrajectoryPlan::IsPathComplete(int loopCount)
 
 std::vector<double> TrajectoryPlan::GetCurrentCmd(int loopCount)
 {
+    //printf("%d %f %f\n", loopCount, plan[loopCount][1], frc::GetTime());
     return plan[loopCount];
 }
 

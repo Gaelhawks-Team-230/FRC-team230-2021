@@ -434,25 +434,32 @@ void TalonXXI::FeederShootSecond()
 
 void TalonXXI::TestSkillsChal()
 {
-    loopCount++;
     switch(autoStage)
     {
+        loopCount++;
         case 0:
             driveCmd = 0.0; rotateCmd = 0.0;
             //drive->LocalReset();
             surveillance->ResetDriveEncoders();
             loopCount = 0;
+            trajIndex = 0;
             autoStage++;
             isTraj = false;
             break;
         case 1:
             isTraj = true;
-            if(!planner->IsPathComplete(loopCount))
+            if(!planner->IsPathComplete(trajIndex))
             {
-                std::vector<double> cmds =  planner->GetCurrentCmd(loopCount);
+                std::vector<double> cmds = planner->GetCurrentCmd(trajIndex);
+                velCmd = cmds[0];
+                rotateCmd = cmds[1]*180/PI;
+                drive->DriveControl(0.0, rotateCmd, 0.0, 0.0, true, true, velCmd);
+                trajIndex++;
             }
             else
             {
+                trajIndex = 0;
+                loopCount = 0;
                 autoStage++;
             }
             
@@ -473,6 +480,7 @@ void TalonXXI::TestSkillsChal()
             autoMode = 0;
             autoStage = 0;
             loopCount = 0;
+            trajIndex = 0;
             break;
     }
 }
@@ -574,10 +582,10 @@ void TalonXXI::ModeSelection(bool forcePrint)
     }
     if(modeChange)
     {
-        printf("Mode Selection \n");
-        printf("Delay: %f\n", delayTime);
-        printf("Start: %s \n", startPos);
-        printf("Balls: %s \n", autoLevel);
-        printf("\n");
+        //printf("Mode Selection \n");
+        //printf("Delay: %f\n", delayTime);
+        //printf("Start: %s \n", startPos);
+        //printf("Balls: %s \n", autoLevel);
+        //printf("\n");
     }
 }
