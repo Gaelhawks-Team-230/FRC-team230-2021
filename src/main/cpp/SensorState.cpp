@@ -305,30 +305,31 @@ void SensorState::ReadDriveEncoders()
     }*/
     if ((leftDriveFalcon != NULL) && (rightDriveFalcon != NULL))
     {
+        leftPzz = leftPz;
+        leftPz = leftRawReading;
         leftRawReading = leftDriveFalcon->GetSelectedSensorPosition();
+        if (abs(leftRawReading-leftPz) < 0.001)
+        {
+            leftRawReading = 2*leftPz - leftPzz;
+        }
+
+        rightPzz = rightPz;
+        rightPz = rightRawReading;
         rightRawReading = rightDriveFalcon->GetSelectedSensorPosition();
-
+        if (abs(rightRawReading-rightPz) < 0.001)
+        {
+            rightRawReading = 2*rightPz - rightPzz;
+        }
+        
         leftWheelDisDrive = (leftRawReading - leftEncoderOffset) * DRIVE_DISTANCE_PER_PULSE;
-        if (abs(leftWheelDisDrive-leftPz) < 0.001)
-        {
-            leftWheelDisDrive = 2*leftPz - leftPzz;
-        }
-
         rightWheelDisDrive = -1.0 * (rightRawReading - rightEncoderOffset) * DRIVE_DISTANCE_PER_PULSE;
-        if (abs(rightWheelDisDrive-rightPz) < 0.001)
-        {
-            rightWheelDisDrive = 2*rightPz - rightPzz;
-        }
-
+        
         averageWheelDisDrive = (rightWheelDisDrive + leftWheelDisDrive) / 2;
 
         currentDriveVel = (averageWheelDisDrive - oldDriveDis) / LOOPTIME;
         //printf("%d %f %f %f \n", loopCount, leftWheelDisDrive, rightWheelDisDrive, gyroReadingDRV);
         oldDriveDis = averageWheelDisDrive;
-        leftPz = leftWheelDisDrive;
-        leftPzz = leftPz;
-        rightPz = rightWheelDisDrive;
-        rightPzz = rightPz;
+
     }
 }
 
