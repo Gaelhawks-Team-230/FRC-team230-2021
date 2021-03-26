@@ -22,7 +22,7 @@ class SensorState;
 
 #define DRIVE_ROBOT_K_BANDWIDTH               (4.0)
 #define DRIVE_ROBOT_K                         (18.0)
-#define DRIVE_HIGH_LIMIT                      (ROBOT_K/ROBOT_K_BANDWIDTH)
+#define DRIVE_HIGH_LIMIT                      (DRIVE_ROBOT_K/DRIVE_ROBOT_K_BANDWIDTH)
 #define DRIVE_LOW_LIMIT                       (-HIGH_LIMIT)
 #define DRIVE_ROBOT_TAU                       (0.26)
 

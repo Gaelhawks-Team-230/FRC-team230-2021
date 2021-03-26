@@ -453,7 +453,6 @@ void TalonXXI::TestSkillsChal()
                 std::vector<double> cmds = planner->GetCurrentCmd(trajIndex);
                 velCmd = cmds[0];
                 rotateCmd = cmds[1]*180/PI;
-                drive->DriveControl(0.0, rotateCmd, 0.0, 0.0, true, true, velCmd);
                 trajIndex++;
             }
             else

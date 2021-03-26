@@ -297,7 +297,11 @@ void SensorState::ReadDriveEncoders()
         leftRawReading = leftDriveFalcon->GetSelectedSensorPosition();
         rightRawReading = rightDriveFalcon->GetSelectedSensorPosition();
         leftWheelDisDrive = (leftRawReading - leftEncoderOffset) * DRIVE_DISTANCE_PER_PULSE;
+        
+
         rightWheelDisDrive = -1.0 * (rightRawReading - rightEncoderOffset) * DRIVE_DISTANCE_PER_PULSE;
+
+
         averageWheelDisDrive = (rightWheelDisDrive + leftWheelDisDrive) / 2;
 
         currentDriveVel = (averageWheelDisDrive - oldDriveDis) / LOOPTIME;
@@ -345,6 +349,8 @@ void SensorState::ResetDriveEncoders()
     rightEncoderOffset = rightRawReading;
     //printf("%d %f %f %f %f resetdrive \n", loopCount, leftWheelDisDrive, leftEncoderOffset, rightWheelDisDrive, rightEncoderOffset);
 }
+
+
 
 //shooter
 void SensorState::InitShooterFalcon(ctre::phoenix::motorcontrol::can::WPI_TalonFX *shooterMotor)
