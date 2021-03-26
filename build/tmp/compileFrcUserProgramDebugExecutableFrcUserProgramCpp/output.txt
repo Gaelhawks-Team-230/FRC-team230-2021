@@ -1,14 +1,20 @@
 See file:///C:/Users/gaelhawks/Documents/230-InfiniteRecharge2021/FRC-team230-2021/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
-compiling ShooterTurret.cpp successful.
+compiling Drivetrain.cpp successful.
+
+compiling DeathStar.cpp successful.
+
+compiling CellCollector.cpp successful.
+
+compiling SensorState.cpp successful.
 
 compiling BallShooter.cpp successful.
 
 compiling Autonomous.cpp successful.
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp: In member function 'void TalonXXI::ModeSelection(bool)':
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:491:17: warning: variable 'startPos' set but not used [-Wunused-but-set-variable]
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:490:17: warning: variable 'startPos' set but not used [-Wunused-but-set-variable]
      const char* startPos;
                  ^~~~~~~~
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:492:17: warning: variable 'autoLevel' set but not used [-Wunused-but-set-variable]
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:491:17: warning: variable 'autoLevel' set but not used [-Wunused-but-set-variable]
      const char* autoLevel;
                  ^~~~~~~~~
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp: In member function 'void TalonXXI::TestSkillsChal()':
@@ -16,13 +22,9 @@ C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\
          loopCount++;
          ^~~~~~~~~
 
-compiling DeathStar.cpp successful.
-
-compiling SensorState.cpp successful.
-
-compiling Drivetrain.cpp successful.
-
 compiling LimeLight.cpp successful.
+
+compiling ShooterTurret.cpp successful.
 
 compiling VisionPi.cpp successful.
 
@@ -35,8 +37,6 @@ C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TrajectoryPlan.cpp:98:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      if (loopCount < plan.size())
          ~~~~~~~~~~^~~~~~~~~~~~~
-
-compiling CellCollector.cpp successful.
 
 compiling TalonXXI_main.cpp successful.
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp: In constructor 'TalonXXI::TalonXXI()':
