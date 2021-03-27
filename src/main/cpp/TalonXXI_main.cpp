@@ -89,9 +89,9 @@ void TalonXXI::RobotInit()
   AutoPositionChooser->SetDefaultOption("Trajectory", TRAJ_PLANNER);
 	frc::SmartDashboard::PutData("Position: ", AutoPositionChooser);
 
-  AutoBallNumber->SetDefaultOption("Level One", LEVEL_ONE);
+  AutoBallNumber->AddOption("Level One", LEVEL_ONE);
   AutoBallNumber->AddOption("Level Two", LEVEL_TWO);
-  AutoBallNumber->AddOption("Test", TEST_TRAJ);
+  AutoBallNumber->SetDefaultOption("Test", TEST_TRAJ);
   AutoBallNumber->AddOption("Barrel", BARREL_TRAJ);
   AutoBallNumber->AddOption("Slalom", SLALOM_TRAJ);
   AutoBallNumber->AddOption("Bounce", BOUNCE_TRAJ);
