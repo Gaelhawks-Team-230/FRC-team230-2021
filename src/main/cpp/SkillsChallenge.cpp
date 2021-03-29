@@ -977,7 +977,6 @@ void TalonXXII::GalacticSearchBlueB()
             break;
 
         case 10:
-            //drive straight to c3
             if(surveillance->GetAverageDriveDis() < DISTANCE_TO_ENDZONE_BLUEB)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
