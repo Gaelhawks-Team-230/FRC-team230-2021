@@ -454,6 +454,7 @@ void TalonXXI::TestSkillsChal()
                 velCmd = cmds[0];
                 rotateCmd = cmds[1]*180/PI;
                 trajIndex++;
+                printf("VelCmd: %f\n", velCmd);
             }
             else
             {
