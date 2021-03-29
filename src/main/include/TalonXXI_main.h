@@ -31,8 +31,11 @@
 #include "Drivetrain.h"
 #include "DeathStar.h"
 #include "LimeLight.h"
+//#include "TrajectoryPlanner.h"
+//#include "TrajectoryPlannerYaw.h"
 // #include "WheelOfFortune.h"
 #include "VisionPi.h"
+#inculde "SkillsChallenge.h"
 
 #include "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
 #include "ctre/phoenix/motorcontrol/StatorCurrentLimitConfiguration.h"
@@ -58,6 +61,8 @@ public:
   DeathStar *deathStar;
   VisionPi *camera;
   //LightController *lightStrip;
+  TrajectoryPlanner *pathPlanner;
+  TrajectoryPlannerYaw *anglePlanner;
 
   double addedDrive;
   double addedRotate;

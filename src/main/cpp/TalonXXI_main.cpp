@@ -21,6 +21,8 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   userInput = new JoystickState(this);
   limelight = new LimelightCamera(this); //NOTE this object must be created before mechanisms
  
+ pathPlanner = new TrajectoryPlanner(this);
+ anglePlanner = new TrajectoryPlannerYaw(this);
 //#ifdef TEST_DRIVE
   drive = new Drivetrain(this);
 //#endif
