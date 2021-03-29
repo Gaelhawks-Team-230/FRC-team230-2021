@@ -2,12 +2,6 @@
 #include "SkillsChallenge.h"
 #include "TalonXXI_main.h"
 
-void TalonXXII::DoNothing()
-{
-    driveCmd = 0.0; rotateCmd = 0.0;
-    loopCount = 0;
-    autoStage = 0;
-}
 
 /*
 void TalonXXII::SlalomPath()
@@ -390,25 +384,16 @@ void TalonXXII::GalacticSearchRedA()
             break;
 
         case 1:
-            //track c3
             driveCmd = 0.0; rotateCmd = 0.0;
             loopCount = 0;
             autoStage++;
             camera->SetCurrentTarget(0);
+            dist = camera->GetCurrDistanceMarker();
             collector->GrabCells();
             deathStar->IntakeCells();
             break;
 
         case 2:
-            driveCmd = 0.0; rotateCmd = 0.0;
-            loopCount = 0;
-            autoStage++;
-            int dist = camera->GetCurrDistanceMarker();
-            surveillance->ResetDriveEncoders();
-            break;
-
-        case 3:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -421,7 +406,7 @@ void TalonXXII::GalacticSearchRedA()
             }
             break;
 
-        case 4:
+        case 3:
             if(deathStar->GetCellCount() == 1)
             {
                 dist = camera->GetCurrDistanceMarker();                
@@ -434,8 +419,7 @@ void TalonXXII::GalacticSearchRedA()
             }
             break;
 
-        case 5:
-            //drive straight to c3
+        case 4:
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -447,7 +431,7 @@ void TalonXXII::GalacticSearchRedA()
             }
             break;
 
-        case 6:
+        case 5:
             if(deathStar->GetCellCount() == 2)
             {
                 dist = camera->GetCurrDistanceMarker();
@@ -461,8 +445,7 @@ void TalonXXII::GalacticSearchRedA()
             }
             break;
 
-        case 7:
-            //turn until facing d5 (until vision system sees d5?)
+        case 6:
             if(loopCount < TIME_TURNING_TO_A6_REDA)
             {
                 driveCmd = -0.1; rotateCmd = 100.0;
@@ -477,8 +460,7 @@ void TalonXXII::GalacticSearchRedA()
             }
             break;
 
-        case 8:
-            //drive straight to c3
+        case 7:
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -490,7 +472,7 @@ void TalonXXII::GalacticSearchRedA()
             }
             break;
 
-        case 9:
+        case 8:
             if(deathStar->GetCellCount() == 3)
             {
                 autoStage++;                
@@ -499,12 +481,11 @@ void TalonXXII::GalacticSearchRedA()
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
                 rotateCmd = 0.0;
+                collector->StopGrab();
             }
             break;
 
-        case 10:
-            //turn until facing d5 (until vision system sees d5?)
-            //driveCmd = 0.0; rotateCmd = 0.0;
+        case 9:
             if(loopCount < TIME_TURNING_TO_ENDZONE_REDA)
             {
                 driveCmd = -0.1; rotateCmd = -100.0;
@@ -519,8 +500,7 @@ void TalonXXII::GalacticSearchRedA()
             }
             break;
 
-        case 11:
-            //drive straight to c3
+        case 10:
             if(surveillance->GetAverageDriveDis() < DISTANCE_TO_ENDZONE_REDA)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -534,7 +514,7 @@ void TalonXXII::GalacticSearchRedA()
             }
             break;
 
-        case 12:
+        case 11:
             driveCmd = 0.0; rotateCmd = 0.0;
             autoMode = autoModeSecond;
             autoStage = 0;
@@ -560,11 +540,11 @@ void TalonXXII::GalacticSearchRedB()
             break;
 
         case 1:
-            //track c3
             driveCmd = 0.0; rotateCmd = 0.0;
             loopCount = 0;
             autoStage++;
             camera->SetCurrentTarget(0);
+            dist = camera->GetCurrDistanceMarker();
             collector->GrabCells();
             deathStar->IntakeCells();
             break;
@@ -574,12 +554,11 @@ void TalonXXII::GalacticSearchRedB()
             loopCount = 0;
             autoStage++;
             angle = camera->GetCurrHeadingMarker();
-            int dist = camera->GetCurrDistanceMarker();
+            
             surveillance->ResetDriveEncoders();
             break;
 
         case 3:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -606,7 +585,6 @@ void TalonXXII::GalacticSearchRedB()
             break;
 
         case 5:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -633,7 +611,6 @@ void TalonXXII::GalacticSearchRedB()
             break;
 
         case 7:
-            //turn until facing d5 (until vision system sees d5?)
             if(loopCount < TIME_TURNING_TO_B7_REDB)
             {
                 driveCmd = -0.1; rotateCmd = 100.0;
@@ -649,7 +626,6 @@ void TalonXXII::GalacticSearchRedB()
             break;
 
         case 8:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -670,12 +646,11 @@ void TalonXXII::GalacticSearchRedB()
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
                 rotateCmd = 0.0;
+                collector->StopGrab();
             }
             break;
 
         case 10:
-            //turn until facing d5 (until vision system sees d5?)
-            //driveCmd = 0.0; rotateCmd = 0.0;
             if(loopCount < TIME_TURNING_TO_ENDZONE_REDB)
             {
                 driveCmd = -0.1; rotateCmd = -100.0;
@@ -691,7 +666,6 @@ void TalonXXII::GalacticSearchRedB()
             break;
 
         case 11:
-            //drive straight to c3
             if(surveillance->GetAverageDriveDis() < DISTANCE_TO_ENDZONE_REDB)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -715,6 +689,9 @@ void TalonXXII::GalacticSearchRedB()
     }
 }
 
+
+
+
 void TalonXXII::GalacticSearchBlueA()
 {
     loopCount++;
@@ -729,7 +706,6 @@ void TalonXXII::GalacticSearchBlueA()
 
         
         case 1:
-            //turn until facing d5 (until vision system sees d5?)
             if(loopCount < TIME_TURNING_TO_E6_BLUEA)
             {
                 driveCmd = -0.1; rotateCmd = 100.0;
@@ -737,7 +713,7 @@ void TalonXXII::GalacticSearchBlueA()
             else
             {
                 driveCmd = 0.0; rotateCmd = 0.0;
-                int dist = camera->GetCurrDistanceMarker();
+                dist = camera->GetCurrDistanceMarker();
                 surveillance->ResetDriveEncoders();
                 loopCount = 0;
                 autoStage++;
@@ -745,7 +721,6 @@ void TalonXXII::GalacticSearchBlueA()
             break;
 
         case 2:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -770,7 +745,6 @@ void TalonXXII::GalacticSearchBlueA()
             break;
 
         case 4:
-            //turn until facing d5 (until vision system sees d5?)
             if(loopCount < TIME_TURNING_TO_B7_BLUEA)
             {
                 driveCmd = -0.1; rotateCmd = -100.0;
@@ -786,7 +760,6 @@ void TalonXXII::GalacticSearchBlueA()
             break;
 
         case 5:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -811,7 +784,6 @@ void TalonXXII::GalacticSearchBlueA()
             break;
 
         case 7:
-            //turn until facing d5 (until vision system sees d5?)
             if(loopCount < TIME_TURNING_TO_C9_BLUEA)
             {
                 driveCmd = -0.1; rotateCmd = 100.0;
@@ -827,7 +799,6 @@ void TalonXXII::GalacticSearchBlueA()
             break;
 
         case 8:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -852,7 +823,6 @@ void TalonXXII::GalacticSearchBlueA()
             break;
 
         case 10:
-            //drive straight to c3
             if(surveillance->GetAverageDriveDis() < DISTANCE_TO_ENDZONE_BLUEA)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -890,7 +860,6 @@ void TalonXXII::GalacticSearchBlueB()
             break;
 
         case 1:
-            //turn until facing d5 (until vision system sees d5?)
             if(loopCount < TIME_TURNING_TO_D6_BLUEB)
             {
                 driveCmd = -0.1; rotateCmd = -100.0;
@@ -898,7 +867,7 @@ void TalonXXII::GalacticSearchBlueB()
             else
             {
                 driveCmd = 0.0; rotateCmd = 0.0;
-                int dist = camera->GetCurrDistanceMarker();
+                dist = camera->GetCurrDistanceMarker();
                 surveillance->ResetDriveEncoders();
                 loopCount = 0;
                 autoStage++;
@@ -906,7 +875,6 @@ void TalonXXII::GalacticSearchBlueB()
             break;
 
         case 2:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -931,7 +899,6 @@ void TalonXXII::GalacticSearchBlueB()
             break;
 
         case 4:
-            //turn until facing d5 (until vision system sees d5?)
             if(loopCount < TIME_TURNING_TO_B8_BLUEB)
             {
                 driveCmd = -0.1; rotateCmd = 100.0;
@@ -947,7 +914,6 @@ void TalonXXII::GalacticSearchBlueB()
             break;
 
         case 5:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -972,7 +938,6 @@ void TalonXXII::GalacticSearchBlueB()
             break;
 
         case 7:
-            //turn until facing d5 (until vision system sees d5?)
             if(loopCount < TIME_TURNING_TO_D10_BLUEB)
             {
                 driveCmd = -0.1; rotateCmd = -100.0;
@@ -988,7 +953,6 @@ void TalonXXII::GalacticSearchBlueB()
             break;
 
         case 8:
-            //drive straight to c3
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
                 driveCmd = driveCmd + Limit(MIN_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
@@ -1040,12 +1004,12 @@ void TalonXXII::GalacticSearchBlueB()
 
 
 
-void TalonXXII::GetPath()
+void TalonXXII::GalacticSearch()
 {
     camera->SetCurrentTarget(0);
     if(SetCurrentTarget(0))
     {
-        if(camera->GetCurrDistanceMarker() < 6)
+        if(camera->GetCurrDistanceMarker() < 72)
         {
             GalacticSearchRedA();
         }
@@ -1066,7 +1030,7 @@ void TalonXXII::GetPath()
             driveCmd = 0.0; rotateCmd = 0.0;
         }
          
-         if(camera->GetCurrHeadingMarker() > //What should I put here?)
+         if(camera->GetCurrHeadingMarker() > 40)
         {
             GalacticSearchBlueA();
         }

@@ -116,6 +116,12 @@ public:
   void FeederShootSecond(void);
   void ModeSelection(bool);
 
+  void GalacticSearchRedA(void);
+  void GalacticSearchRedB(void);
+  void GalacticSearchBlueA(void);
+  void GalacticSearchBlueB(void);
+  void GalacticSearch(void);
+
 private:
   frc::SendableChooser<int> *AutoPositionChooser;
   frc::SendableChooser<int> *AutoBallNumber;
@@ -148,4 +154,6 @@ private:
   int loopCount;
 
   bool isJoystickCountInitialized;
+
+  double dist;
 };
