@@ -1,0 +1,30 @@
+#ifndef SKILLS_CHALLENGE_H_
+#define SKILLS_CHALLENGE_H_
+
+
+
+//Red A
+#define TIME_TURNING_TO_A6_REDA         (1.0*N1SEC)
+#define TIME_TURNING_TO_ENDZONE_REDA    (1.0*N1SEC)
+#define DISTANCE_TO_ENDZONE_REDA        (180)
+
+//Red B
+#define TIME_TURNING_TO_B7_REDB         (1.0*N1SEC)
+#define TIME_TURNING_TO_ENDZONE_REDB    (1.0*N1SEC)
+#define DISTANCE_TO_ENDZONE_REDB        (156)
+
+
+#define BLUE_START_DISTANCE             (120)
+//Blue A
+#define TIME_TURNING_TO_E6_BLUEA        (1.0*N1SEC)
+#define TIME_TURNING_TO_B7_BLUEA        (1.0*N1SEC)
+#define TIME_TURNING_TO_C9_BLUEA        (1.0*N1SEC)
+#define DISTANCE_TO_ENDZONE_BLUEA       (96)
+
+//Blue B
+#define TIME_TURNING_TO_D6_BLUEB        (1.0*N1SEC)
+#define TIME_TURNING_TO_B8_BLUEB        (1.0*N1SEC)
+#define TIME_TURNING_TO_D10_BLUEB       (1.0*N1SEC)
+#define DISTANCE_TO_ENDZONE_BLUEB       (60)
+
+#endif /*Sample_H_*/
