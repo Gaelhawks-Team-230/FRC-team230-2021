@@ -57,8 +57,7 @@ class LimelightCamera
         void TurnOnLED(void);
         void TurnOffLED(void);
         void AutoHorizontalOffset(int);
-        void TakeSnapshot(bool);
-        
+        void TakeSnapshot(bool);        
         //limelight
         inline double GetTargetVisibility() { return seesTarget; };
         bool SeesShooterTarget(void);

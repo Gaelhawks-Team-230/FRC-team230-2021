@@ -179,7 +179,7 @@
 #ifdef PRACTICE_BOT
 #define DRIVE_OMEGA                     (2.0)//(4.0)
 #else
-#define DRIVE_OMEGA                     (2.5)//(4.0)
+#define DRIVE_OMEGA                     (3.0)//(2.5)//(4.0)
 #endif
 
 typedef enum

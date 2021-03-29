@@ -139,6 +139,10 @@ private:
         double rightEncoderOffset;
         double leftRawReading;
         double rightRawReading;
+        double leftPz;
+        double leftPzz;
+        double rightPz;
+        double rightPzz;
 
         //#ifdef USE_GYRO
         frc::ADXRS450_Gyro *driveGyro;
@@ -146,6 +150,7 @@ private:
         double gyroVelDRV;
         double gyroReadingDRV;
         double oldGyroReadingDRV;
+        double oldGyroReadingDRVz;
 
         //deathstar
         frc::DigitalInput *cellSensor0;

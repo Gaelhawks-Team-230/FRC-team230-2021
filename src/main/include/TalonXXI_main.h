@@ -36,6 +36,7 @@
 // #include "WheelOfFortune.h"
 #include "VisionPi.h"
 #inculde "SkillsChallenge.h"
+#include "TrajectoryPlan.h"
 
 #include "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
 #include "ctre/phoenix/motorcontrol/StatorCurrentLimitConfiguration.h"
@@ -61,12 +62,12 @@ public:
   DeathStar *deathStar;
   VisionPi *camera;
   //LightController *lightStrip;
-  TrajectoryPlanner *pathPlanner;
-  TrajectoryPlannerYaw *anglePlanner;
+  TrajectoryPlan *planner;
 
   double addedDrive;
   double addedRotate;
   bool isAuto;
+  bool isTraj;
 
   double xstartPeriodic;
   double xendPeriodic;
@@ -114,6 +115,7 @@ public:
   void CenterShootSecond(void);
   void TrenchShootSecond(void);
   void FeederShootSecond(void);
+  void TestSkillsChal(void);
   void ModeSelection(bool);
 
   void GalacticSearchRedA(void);
@@ -130,9 +132,11 @@ private:
   int autoModeSecond;
   int autoStartPosition;
   int autoBallNumber;
+  int trajIndex;
   double delayTime;
   int delayCount;
   bool isDelay;
+  bool modeChange;
 
   int DO_NOTHING = 0;
   int BASELINE = 1;
@@ -140,14 +144,20 @@ private:
   int CENTER_POS = 3;
   int TRENCH_POS = 4;
   int PUSH_PARTNER = 7;
+  int TRAJ_PLANNER = 8;
 
   int LEVEL_ONE = 5;
   int LEVEL_TWO = 6;
+  int TEST_TRAJ = 9;
+  int BARREL_TRAJ = 10;
+  int SLALOM_TRAJ = 11;
+  int BOUNCE_TRAJ = 12;
 
   int dashCounter;
   bool isBlueAlliance;
   bool firstTime;
   double driveCmd;
+  double velCmd;
   double rotateCmd;
   double isGyroOn;
   bool isInTeleop;
@@ -156,4 +166,5 @@ private:
   bool isJoystickCountInitialized;
 
   double dist;
+  bool isPathRead;
 };

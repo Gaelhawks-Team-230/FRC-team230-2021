@@ -38,6 +38,8 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   //colorWheel = new WheelOfFortune(this);
   camera = new VisionPi(this);
 
+  planner = new TrajectoryPlan(this);
+
   loopCount = 0;
   
   AutoPositionChooser = new frc::SendableChooser<int>;
@@ -45,8 +47,10 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   dashCounter = 0;
   isBlueAlliance = false;
   isAuto = false;
+  isTraj = false;
   firstTime = true;
   driveCmd = 0.0;
+  velCmd = 0.0;
   rotateCmd = 0.0;
   autoStage = 0;
   autoMode = 0;
@@ -57,6 +61,7 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   delayCount = 0;
   isDelay = false;
   isInTeleop = false;
+  trajIndex = 0;
 
   addedDrive = 0.0;
   addedRotate = 0.0;
@@ -72,6 +77,7 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   xendcolor = 0.0;
 
   dist = 0.0;
+  isPathRead= false;
 }
 
 void TalonXXI::RobotInit() 
@@ -79,18 +85,22 @@ void TalonXXI::RobotInit()
   frc::SmartDashboard::PutNumber("Delay time", 0.0);
 
   AutoPositionChooser->AddOption("Feeder", FEEDER_POS);
-	AutoPositionChooser->SetDefaultOption("Center", CENTER_POS);
+	AutoPositionChooser->AddOption("Center", CENTER_POS);
 	AutoPositionChooser->AddOption("Trench", TRENCH_POS);
   AutoPositionChooser->AddOption("Do Nothing", DO_NOTHING);
   AutoPositionChooser->AddOption("Baseline", BASELINE);
+  AutoPositionChooser->SetDefaultOption("Trajectory", TRAJ_PLANNER);
 	frc::SmartDashboard::PutData("Position: ", AutoPositionChooser);
 
-  AutoBallNumber->SetDefaultOption("Level One", LEVEL_ONE);
+  AutoBallNumber->AddOption("Level One", LEVEL_ONE);
   AutoBallNumber->AddOption("Level Two", LEVEL_TWO);
+  AutoBallNumber->SetDefaultOption("Test", TEST_TRAJ);
+  AutoBallNumber->AddOption("Barrel", BARREL_TRAJ);
+  AutoBallNumber->AddOption("Slalom", SLALOM_TRAJ);
+  AutoBallNumber->AddOption("Bounce", BOUNCE_TRAJ);
   frc::SmartDashboard::PutData("Level: ", AutoBallNumber);
-
   ServiceDash();
-}
+  }
 
 void TalonXXI::DisabledInit()
 {
@@ -102,6 +112,17 @@ void TalonXXI::DisabledPeriodic()
 {
   ModeSelection(false);
   limelight->TurnOffLED();
+  if(modeChange)
+  {
+    isPathRead = false;
+  }
+  if(!isPathRead)
+  {
+    printf ("AutoBallNumber: %d \n", autoBallNumber);
+    printf ("Selected Value: %d \n", AutoBallNumber->GetSelected());
+    isPathRead = planner->ReadPath(AutoBallNumber->GetSelected());
+  }
+  
 }
 
 void TalonXXI::InitializeAlliance()
@@ -184,9 +205,13 @@ void TalonXXI::AutonomousPeriodic()
       case 7:
         TrenchShootSecond();
         break;
+      
+      case 8:
+        TestSkillsChal();
+        break;
     }
   }
-  drive->DriveControl(driveCmd, rotateCmd, 0.0, 0.0, true);
+  drive->DriveControl(driveCmd, rotateCmd, 0.0, 0.0, true, isTraj, velCmd);
   CommunityService();
   ServiceDash();
 }
@@ -221,6 +246,7 @@ void TalonXXI::TeleopPeriodic()
   loopCount++;
   xstartPeriodic = frc::GetTime();
   surveillance->Analyze();
+  camera->Analyze();
   xstartOtherAnalyze = frc::GetTime();
   limelight->AutoHorizontalOffset(-1);userInput->Analyze();
   if(turret->IsLimelightTracking())
@@ -303,10 +329,17 @@ void TalonXXI::TeleopPeriodic()
     turret->GiveGoalAngle(TURRET_FACE_BACK_POS);
     shooter->GiveShroudGoalAngle(SHROUD_BEHIND_COLOR_WHEEL_ANGLE);
   }
-  /*if(userInput->GetFlightControllerButton(COLOR_SPIN_BUTTON) == kPressing)
+  if(userInput->GetFlightControllerButton(COLOR_SPIN_BUTTON) == kPressing)
   {
-    colorWheel->StartWheelRotate();
+    planner->PrintPath();
+    //drive->DriveControl(0.25, 0.0, 0.0, 0.0, false, false, 0.0);
+    //colorWheel->StartWheelRotate();
   }
+  /*else
+  {
+    drive->DriveControl((userInput->GetFlightControllerAxis(SPEED_AXIS)), userInput->GetFlightControllerAxis(ROTATE_AXIS), addedDrive, addedRotate, false, false, 0.0);
+  }
+  
   if(userInput->GetFlightControllerButton(COLOR_SPIN_BUTTON) == kReleasing)
   {
     colorWheel->SetIdleMode();
@@ -318,7 +351,7 @@ void TalonXXI::TeleopPeriodic()
   }
   /*if(userInput->GetDpadUpPushed())
   {
-    climb->MoveExtender(1.0);
+    planner->BounceVelArray();
   }
   else if(userInput->GetDpadDownButton())
   {
@@ -374,7 +407,7 @@ void TalonXXI::TeleopPeriodic()
   //climb->WinchTesting(userInput->GetGamepadAxis(2));
 
   xstartDrive = frc::GetTime();
-  drive->DriveControl((userInput->GetFlightControllerAxis(SPEED_AXIS)), userInput->GetFlightControllerAxis(ROTATE_AXIS), addedDrive, addedRotate, false);
+  drive->DriveControl((userInput->GetFlightControllerAxis(SPEED_AXIS)), userInput->GetFlightControllerAxis(ROTATE_AXIS), addedDrive, addedRotate, false, false, 0.0);
   xendDrive = frc::GetTime();
   xstartService = frc::GetTime();
   CommunityService();
@@ -421,6 +454,7 @@ void TalonXXI::ServiceDash()
     limelight->UpdateDash();
     deathStar->UpdateDash();
     collector->UpdateDash();
+    planner->UpdateDash();
     //colorWheel->UpdateDash();
   //#endif
     //climb->UpdateDash();
@@ -443,6 +477,7 @@ void TalonXXI::CommunityService()
   collector->Service();
   //colorWheel->Service();
   //climb->Service();
+  planner->Service();
 }
 
 void TalonXXI::Omnicide()
@@ -457,6 +492,7 @@ void TalonXXI::Omnicide()
   //colorWheel->StopAll();
   drive->StopAll();
   //climb->StopAll();
+  planner->StopAll();
 }
 
 double TalonXXI::Limit(double min, double max, double curValue)
@@ -488,6 +524,7 @@ void TalonXXI::RobotStartingConfig()
   //colorWheel->StartingConfig();
   drive->StartingConfig();
   //climb->StartingConfig();
+  planner->StartingConfig();
 }
 
 
@@ -524,7 +561,7 @@ void TalonXXI::TestPeriodic()
  // climb->ExtendTesting(userInput->GetGamepadAxis(0));
  // climb->WinchTesting(userInput->GetGamepadAxis(2));
 
-  drive->DriveControl((userInput->GetFlightControllerAxis(SPEED_AXIS)), userInput->GetFlightControllerAxis(ROTATE_AXIS), addedDrive, addedRotate, false);
+  drive->DriveControl((userInput->GetFlightControllerAxis(SPEED_AXIS)), userInput->GetFlightControllerAxis(ROTATE_AXIS), addedDrive, addedRotate, false, false, 0.0);
   CommunityService();
   ServiceDash();
 }

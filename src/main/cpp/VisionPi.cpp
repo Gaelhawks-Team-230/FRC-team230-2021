@@ -5,7 +5,10 @@
 VisionPi::VisionPi(TalonXXI* pRobot)
 {
     mainRobot = pRobot;
-    table = nt::NetworkTableInstance::GetDefault().GetTable("VisionPi");
+    cameraTable = nt::NetworkTableInstance::GetDefault().GetTable("VisionPi");
+    //unsigned short port{1735};
+    //const char* Server ="PiIP";
+    //cameraTable = nt::NetworkTableInstance::Create()::StartClient(Server,port).GetTable("VisionPi");
     LocalReset();
 }
 
@@ -13,7 +16,7 @@ void VisionPi::LocalReset()
 {
     object_id.clear();
     distance.clear();
-    header.clear();
+    heading.clear();
     xcenter.clear();
     ycenter.clear();
     currTargetX = 0.0;
@@ -58,17 +61,20 @@ frc::SmartDashboard::PutNumber("Target Heading Power Cell Translation", targetTr
 
 void VisionPi::Analyze()
 {
-    is_new_data = table->GetNumber("state", 1);
-    if (is_new_data > 0)
+    is_new_data = cameraTable->GetNumber("state", 1);
+    if (is_new_data > 0) //Old Data is 1, New Data is 0
     {  
         return;
     }
-    table->PutNumber("state", 1);
-    object_id = table->GetNumberArray("id", object_id);
-    distance = table->GetNumberArray("distance", distance);
-    header = table->GetNumberArray("head", header);
-    xcenter = table->GetNumberArray("xcenter", xcenter);
-    ycenter = table->GetNumberArray("ycenter", ycenter);
+    //printf("visionPi state: %f\n", is_new_data); 
+    cameraTable->PutNumber("state", 1);
+    object_id = cameraTable->GetNumberArray("id", object_id);
+    distance = cameraTable->GetNumberArray("distance", distance);
+    heading = cameraTable->GetNumberArray("head", heading);
+    xcenter = cameraTable->GetNumberArray("xcenter", xcenter);
+    ycenter = cameraTable->GetNumberArray("ycenter", ycenter);
+    //printf("%f id %f distance %f head %f xcenter %f ycenter", object_id[0], distance[0], heading[0], xcenter[0], ycenter[0]);
+
 }
 
 bool VisionPi::SetCurrentTarget(int targetID) //power cell=0, purple marker=1, red marker=2

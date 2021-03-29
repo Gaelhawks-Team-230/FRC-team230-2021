@@ -60,6 +60,12 @@ SensorState::SensorState(TalonXXI *pRobot)
     rightEncoderOffset = 0.0;
     leftRawReading = 0.0;
     rightRawReading = 0.0;
+    leftPz = 0.0;
+    leftPzz = 0.0;
+    rightPz = 0.0;
+    rightPzz = 0.0;
+    oldGyroReadingDRV = 0.0;
+    oldGyroReadingDRVz = 0.0;
     LocalReset();
 }
 
@@ -271,8 +277,13 @@ void SensorState::Analyze()
 
 #ifdef USE_GYRO
     gyroReadingDRV = driveGyro->GetAngle();
+    //if (abs(gyroReadingDRV-oldGyroReadingDRV) < 0.001)
+    //{
+        //gyroReadingDRV = 2*oldGyroReadingDRV - oldGyroReadingDRVz;
+    //}
     gyroVelDRV = (gyroReadingDRV - oldGyroReadingDRV) / LOOPTIME;
     oldGyroReadingDRV = gyroReadingDRV;
+    //oldGyroReadingDRVz = oldGyroReadingDRV;
     // printf("%d %f %f %f", loopCount, gyroReadingDRV, gyroVelDRV, driveGyro->GetRate());
 #endif
     //printf("%d %f %f %f %f \n", loopCount, )
@@ -294,15 +305,31 @@ void SensorState::ReadDriveEncoders()
     }*/
     if ((leftDriveFalcon != NULL) && (rightDriveFalcon != NULL))
     {
+        leftPzz = leftPz;
+        leftPz = leftRawReading;
         leftRawReading = leftDriveFalcon->GetSelectedSensorPosition();
+        if (abs(leftRawReading-leftPz) < 0.001)
+        {
+            leftRawReading = 2*leftPz - leftPzz;
+        }
+
+        rightPzz = rightPz;
+        rightPz = rightRawReading;
         rightRawReading = rightDriveFalcon->GetSelectedSensorPosition();
+        if (abs(rightRawReading-rightPz) < 0.001)
+        {
+            rightRawReading = 2*rightPz - rightPzz;
+        }
+        
         leftWheelDisDrive = (leftRawReading - leftEncoderOffset) * DRIVE_DISTANCE_PER_PULSE;
         rightWheelDisDrive = -1.0 * (rightRawReading - rightEncoderOffset) * DRIVE_DISTANCE_PER_PULSE;
+        
         averageWheelDisDrive = (rightWheelDisDrive + leftWheelDisDrive) / 2;
 
         currentDriveVel = (averageWheelDisDrive - oldDriveDis) / LOOPTIME;
-        //printf("%d %f %f %f %f %f \n", loopCount, leftWheelDisDrive, rightWheelDisDrive, averageWheelDisDrive, oldDriveDis, currentDriveVel);
+        //printf("%d %f %f %f \n", loopCount, leftWheelDisDrive, rightWheelDisDrive, gyroReadingDRV);
         oldDriveDis = averageWheelDisDrive;
+
     }
 }
 
@@ -345,6 +372,8 @@ void SensorState::ResetDriveEncoders()
     rightEncoderOffset = rightRawReading;
     //printf("%d %f %f %f %f resetdrive \n", loopCount, leftWheelDisDrive, leftEncoderOffset, rightWheelDisDrive, rightEncoderOffset);
 }
+
+
 
 //shooter
 void SensorState::InitShooterFalcon(ctre::phoenix::motorcontrol::can::WPI_TalonFX *shooterMotor)
