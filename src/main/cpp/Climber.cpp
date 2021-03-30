@@ -84,7 +84,7 @@ void Climber::Service()
 
 void Climber::MoveExtender(double input)
 {
-    /*if(input != 0.0 && !isManualMove)
+    if(input != 0.0 && !isManualMove)
     {
         goalPos = extendPos;
         isManualMove = true;

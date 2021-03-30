@@ -171,7 +171,7 @@ void WheelOfFortune::Service()
                 }
             }
         
-            /*if ((currentColor) == goalColor)
+            if ((currentColor) == goalColor)
             {
                 motorCommand = 0.0;
                 operationMode = IDLE_MODE;

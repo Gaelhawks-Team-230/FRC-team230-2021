@@ -13,6 +13,7 @@ C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\bui
 C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\78vajcbzqqkxzor9nmorbc5r7\\Autonomous.o
 C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\7qks2vce180psstp5mi9d3r6g\\DeathStar.o
 C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\7xy6xwiiolj9zbucl832fr170\\TrajectoryPlan.o
+C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\89oagha1mq8oxc7trdrrhxu4p\\SkillsChallenge.o
 C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\9nbz9y0vxy149bcx2tboktdwv\\JoystickState.o
 C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\bv8allmn53jp7hrwetrf7id8i\\Drivetrain.o
 C:\\Users\\gaelhawks\\Documents\\230-InfiniteRecharge2021\\FRC-team230-2021\\build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\etegallt1xjsm6y4awx2snruw\\ShooterTurret.o

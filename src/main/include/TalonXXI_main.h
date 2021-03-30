@@ -35,7 +35,7 @@
 //#include "TrajectoryPlannerYaw.h"
 // #include "WheelOfFortune.h"
 #include "VisionPi.h"
-#inculde "SkillsChallenge.h"
+#include "SkillsChallenge.h"
 #include "TrajectoryPlan.h"
 
 #include "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
