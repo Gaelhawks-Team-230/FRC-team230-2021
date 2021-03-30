@@ -21,6 +21,8 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   userInput = new JoystickState(this);
   limelight = new LimelightCamera(this); //NOTE this object must be created before mechanisms
  
+ //pathPlanner = new TrajectoryPlanner(this);
+ //anglePlanner = new TrajectoryPlannerYaw(this);
 //#ifdef TEST_DRIVE
   drive = new Drivetrain(this);
 //#endif
@@ -74,6 +76,7 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   xmidcolor = 0.0;
   xendcolor = 0.0;
 
+  dist = 0.0;
   isPathRead= false;
 }
 

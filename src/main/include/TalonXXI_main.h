@@ -31,8 +31,11 @@
 #include "Drivetrain.h"
 #include "DeathStar.h"
 #include "LimeLight.h"
+//#include "TrajectoryPlanner.h"
+//#include "TrajectoryPlannerYaw.h"
 // #include "WheelOfFortune.h"
 #include "VisionPi.h"
+#inculde "SkillsChallenge.h"
 #include "TrajectoryPlan.h"
 
 #include "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
@@ -115,6 +118,12 @@ public:
   void TestSkillsChal(void);
   void ModeSelection(bool);
 
+  void GalacticSearchRedA(void);
+  void GalacticSearchRedB(void);
+  void GalacticSearchBlueA(void);
+  void GalacticSearchBlueB(void);
+  void GalacticSearch(void);
+
 private:
   frc::SendableChooser<int> *AutoPositionChooser;
   frc::SendableChooser<int> *AutoBallNumber;
@@ -156,5 +165,6 @@ private:
 
   bool isJoystickCountInitialized;
 
+  double dist;
   bool isPathRead;
 };

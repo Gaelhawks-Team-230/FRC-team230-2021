@@ -77,7 +77,7 @@ void VisionPi::Analyze()
 
 }
 
-bool VisionPi::SetCurrentTarget(int targetID)
+bool VisionPi::SetCurrentTarget(int targetID) //power cell=0, purple marker=1, red marker=2
 {
     for (unsigned int i = 0; i < object_id.size(); i++)
     {
