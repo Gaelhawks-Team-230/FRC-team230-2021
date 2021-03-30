@@ -145,6 +145,7 @@ private:
   int TRENCH_POS = 4;
   int PUSH_PARTNER = 7;
   int TRAJ_PLANNER = 8;
+  int GALACTIC_SEARCH = 9;
 
   int LEVEL_ONE = 5;
   int LEVEL_TWO = 6;

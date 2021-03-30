@@ -544,6 +544,11 @@ void TalonXXI::ModeSelection(bool forcePrint)
         
 
     }
+    else if(autoStartPosition == GALACTIC_SEARCH)
+    {
+        autoMode = 9;
+        startPos = "GALACTIC SEARCH";
+    }
     else
     {
         autoMode = 4;

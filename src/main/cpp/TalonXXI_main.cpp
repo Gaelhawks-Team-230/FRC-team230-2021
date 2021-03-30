@@ -90,6 +90,7 @@ void TalonXXI::RobotInit()
   AutoPositionChooser->AddOption("Do Nothing", DO_NOTHING);
   AutoPositionChooser->AddOption("Baseline", BASELINE);
   AutoPositionChooser->SetDefaultOption("Trajectory", TRAJ_PLANNER);
+  AutoPositionChooser->AddOption("Galactic Search", GALACTIC_SEARCH);
 	frc::SmartDashboard::PutData("Position: ", AutoPositionChooser);
 
   AutoBallNumber->AddOption("Level One", LEVEL_ONE);
@@ -208,6 +209,10 @@ void TalonXXI::AutonomousPeriodic()
       
       case 8:
         TestSkillsChal();
+        break;
+
+      case 9:
+        GalacticSearch();
         break;
     }
   }
