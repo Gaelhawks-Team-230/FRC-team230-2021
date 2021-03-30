@@ -1,20 +1,27 @@
 See file:///C:/Users/gaelhawks/Documents/230-InfiniteRecharge2021/FRC-team230-2021/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
-compiling Drivetrain.cpp successful.
+compiling Climber.cpp successful.
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Climber.cpp:87:5: warning: "/*" within comment [-Wcomment]
+     /*if(input != 0.0 && !isManualMove)
+      
+
+compiling Sample.cpp successful.
+
+compiling JoystickState.cpp successful.
 
 compiling DeathStar.cpp successful.
 
 compiling CellCollector.cpp successful.
 
-compiling SensorState.cpp successful.
-
 compiling BallShooter.cpp successful.
+
+compiling Drivetrain.cpp successful.
 
 compiling Autonomous.cpp successful.
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp: In member function 'void TalonXXI::ModeSelection(bool)':
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:490:17: warning: variable 'startPos' set but not used [-Wunused-but-set-variable]
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:491:17: warning: variable 'startPos' set but not used [-Wunused-but-set-variable]
      const char* startPos;
                  ^~~~~~~~
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:491:17: warning: variable 'autoLevel' set but not used [-Wunused-but-set-variable]
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:492:17: warning: variable 'autoLevel' set but not used [-Wunused-but-set-variable]
      const char* autoLevel;
                  ^~~~~~~~~
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp: In member function 'void TalonXXI::TestSkillsChal()':
@@ -22,11 +29,14 @@ C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\
          loopCount++;
          ^~~~~~~~~
 
-compiling LimeLight.cpp successful.
+compiling WheelOfFortune.cpp successful.
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\WheelOfFortune.cpp:174:13: warning: "/*" within comment [-Wcomment]
+             /*if ((currentColor) == goalColor)
+              
+
+compiling SensorState.cpp successful.
 
 compiling ShooterTurret.cpp successful.
-
-compiling VisionPi.cpp successful.
 
 compiling TrajectoryPlan.cpp successful.
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TrajectoryPlan.cpp: In member function 'void TrajectoryPlan::PrintPath()':
@@ -38,6 +48,8 @@ C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\
      if (loopCount < plan.size())
          ~~~~~~~~~~^~~~~~~~~~~~~
 
+compiling VisionPi.cpp successful.
+
 compiling TalonXXI_main.cpp successful.
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp: In constructor 'TalonXXI::TalonXXI()':
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TalonXXI_main.cpp:17:41: warning: 'frc::TimedRobot::TimedRobot(double)' is deprecated: Use constructor with unit-safety instead. [-Wdeprecated-declarations]
@@ -48,5 +60,9 @@ In file included from C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-
 C:\Users\gaelhawks\.gradle\caches\transforms-2\files-2.1\c8e850653c2afd60a8151f1bf737926e\wpilibc-cpp-2020.3.2-headers/frc/TimedRobot.h:53:12: note: declared here
    explicit TimedRobot(double period);
             ^~~~~~~~~~
+
+compiling LightController.cpp successful.
+
+compiling LimeLight.cpp successful.
 
 Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Users/gaelhawks/Documents/230-InfiniteRecharge2021/FRC-team230-2021/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.
