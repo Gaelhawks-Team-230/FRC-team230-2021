@@ -69,7 +69,7 @@ void VisionPi::Analyze()
     //printf("visionPi state: %f\n", is_new_data); 
     cameraTable->PutNumber("state", 1);
     object_id = cameraTable->GetNumberArray("id", object_id);
-    distance = cameraTable->GetNumberArray("distance", distance);
+    distance = cameraTable->GetNumberArray("distances", distance);
     heading = cameraTable->GetNumberArray("head", heading);
     xcenter = cameraTable->GetNumberArray("xcenter", xcenter);
     ycenter = cameraTable->GetNumberArray("ycenter", ycenter);
@@ -85,6 +85,9 @@ bool VisionPi::SetCurrentTarget(int targetID) //power cell=0, purple marker=1, r
         {
             currTargetX = xcenter[i];
             currTargetY = ycenter[i];
+            currDistanceMarker = distance[i];
+            printf("Distance: %f\n", distance[i]);
+            currHeadingMarker = heading[i];
 
             return true;
         }

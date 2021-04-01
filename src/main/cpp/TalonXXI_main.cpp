@@ -78,6 +78,8 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
 
   dist = 0.0;
   isPathRead= false;
+
+  galacticStage= 0;
 }
 
 void TalonXXI::RobotInit() 
@@ -156,6 +158,7 @@ void TalonXXI::AutonomousInit()
   limelight->TurnOffLED();
   loopCount = 0;
   autoStage = 0;
+  galacticStage = 0;
 }
 
 void TalonXXI::AutonomousPeriodic() 

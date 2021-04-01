@@ -1,11 +1,17 @@
 #ifndef SKILLS_CHALLENGE_H_
 #define SKILLS_CHALLENGE_H_
 
+#define PI_LOAD_PAUSE                   (0.75*N1SEC)
 
+#define BLUE                            (1)
+#define RED_A                           (2)
+#define RED_B                           (3)
+#define BLUE_A                          (4)
+#define BLUE_B                          (5)
 
 //Red A
-#define TIME_TURNING_TO_A6_REDA         (1.0*N1SEC)
-#define TIME_TURNING_TO_ENDZONE_REDA    (1.0*N1SEC)
+#define TIME_TURNING_TO_A6_REDA         (2.5*N1SEC)
+#define TIME_TURNING_TO_ENDZONE_REDA    (3.0*N1SEC)
 #define DISTANCE_TO_ENDZONE_REDA        (180)
 
 //Red B

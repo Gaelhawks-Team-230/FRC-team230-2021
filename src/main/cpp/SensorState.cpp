@@ -128,6 +128,20 @@ void SensorState::LocalReset()
     deathStarAngleDegrees = deathStar->GetDistance() - DEATH_STAR_OFFSET;
     deathStarAngleDegreesz = deathStarAngleDegrees;
     deathStarDegreesPerSec = 0.0;
+
+    //drivetrain
+    leftRawReading = 0.0;
+    rightRawReading = 0.0;
+    leftPz = 0.0;
+    leftPzz = 0.0;
+    rightPz = 0.0;
+    rightPzz = 0.0;
+    oldDriveDis = 0.0;
+    averageWheelDisDrive = 0.0;
+    leftWheelDisDrive = 0.0;
+    rightWheelDisDrive = 0.0;
+    leftEncoderOffset = 0.0;
+    rightEncoderOffset= 0.0;
 }
 
 void SensorState::StartingConfig()
@@ -327,6 +341,7 @@ void SensorState::ReadDriveEncoders()
         averageWheelDisDrive = (rightWheelDisDrive + leftWheelDisDrive) / 2;
 
         currentDriveVel = (averageWheelDisDrive - oldDriveDis) / LOOPTIME;
+        currentDriveVel = TalonXXI::Limit(-240,240,currentDriveVel);
         //printf("%d %f %f %f \n", loopCount, leftWheelDisDrive, rightWheelDisDrive, gyroReadingDRV);
         oldDriveDis = averageWheelDisDrive;
 
@@ -370,6 +385,7 @@ void SensorState::ResetDriveEncoders()
 {
     leftEncoderOffset = leftRawReading;
     rightEncoderOffset = rightRawReading;
+    //printf("raw left: %f \t raw right: %f\n",leftRawReading,rightRawReading);
     //printf("%d %f %f %f %f resetdrive \n", loopCount, leftWheelDisDrive, leftEncoderOffset, rightWheelDisDrive, rightEncoderOffset);
 }
 

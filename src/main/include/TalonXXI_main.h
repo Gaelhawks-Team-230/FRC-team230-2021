@@ -137,6 +137,7 @@ private:
   int delayCount;
   bool isDelay;
   bool modeChange;
+  int galacticStage;
 
   int DO_NOTHING = 0;
   int BASELINE = 1;
