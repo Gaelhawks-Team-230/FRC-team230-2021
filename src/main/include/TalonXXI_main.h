@@ -169,4 +169,7 @@ private:
 
   double dist;
   bool isPathRead;
+
+  double goalAngle;
+  double oldDriveAngle;
 };

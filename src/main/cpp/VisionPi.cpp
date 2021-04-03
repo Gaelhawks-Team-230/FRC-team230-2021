@@ -81,12 +81,13 @@ bool VisionPi::SetCurrentTarget(int targetID) //power cell=0, purple marker=1, r
 {
     for (unsigned int i = 0; i < object_id.size(); i++)
     {
+        printf("Distance: %f \t %f\n", distance[i], object_id[i]);
         if (object_id[i]==targetID)
         {
             currTargetX = xcenter[i];
             currTargetY = ycenter[i];
             currDistanceMarker = distance[i];
-            printf("Distance: %f\n", distance[i]);
+            
             currHeadingMarker = heading[i];
 
             return true;

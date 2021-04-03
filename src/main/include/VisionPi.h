@@ -51,6 +51,8 @@ class VisionPi
         double GetCurrTargetY(void);
         double GetCurrDistanceMarker(void);
         double GetCurrHeadingMarker(void);
+
+        inline int GetNumObjectsSeen(void) {return object_id.size(); };
 };
 
 #endif

@@ -33,7 +33,7 @@ void TalonXXI::GalacticSearchRedA()
             //printf("drive distance: %f\n", surveillance->GetAverageDriveDis());
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
-                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.25 - driveCmd); 
+                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.35 - driveCmd); 
                 rotateCmd = 0.0;
                 
             }
@@ -83,13 +83,14 @@ void TalonXXI::GalacticSearchRedA()
             {
                 driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.25 - driveCmd); 
                 rotateCmd = 0.0;
+                oldDriveAngle = surveillance->GetDriveGyroAngle();
             }
             break;
 
         case 6:
             if(loopCount < TIME_TURNING_TO_A6_REDA)
             {
-                driveCmd = -0.1; rotateCmd = -100.0;
+                driveCmd = -0.1; rotateCmd = -102.0;
             }
             else
             {
@@ -114,10 +115,24 @@ void TalonXXI::GalacticSearchRedA()
                 surveillance->ResetDriveEncoders();
                 loopCount = 0;
                 autoStage++;
+                goalAngle = camera->GetCurrDistanceMarker();
             }
             break;
-            
 
+        // case 8:
+        //     if(fabs(surveillance->GetDriveGyroAngle() - oldDriveAngle) < fabs(goalAngle))
+        //     {
+        //         driveCmd = -0.1; rotateCmd = -100.0;
+        //     }
+        //     else
+        //     {
+        //         driveCmd = 0.0; rotateCmd = 0.0;
+        //         dist = camera->GetCurrDistanceMarker();
+        //         surveillance->ResetDriveEncoders();
+        //         loopCount = 0;
+        //         autoStage++;
+        //     }
+            
         case 8:
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
@@ -138,7 +153,7 @@ void TalonXXI::GalacticSearchRedA()
             }
             else
             {
-                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.25 - driveCmd); 
+                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.35 - driveCmd); 
                 rotateCmd = 0.0;
                 collector->StopGrab();
             }
@@ -160,7 +175,7 @@ void TalonXXI::GalacticSearchRedA()
             break;
 
         case 11:
-            if(surveillance->GetAverageDriveDis() < DISTANCE_TO_ENDZONE_REDA)
+            if(fabs(surveillance->GetAverageDriveDis()) < DISTANCE_TO_ENDZONE_REDA)
             {
                 driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
                 rotateCmd = 0.0;
@@ -206,6 +221,7 @@ void TalonXXI::GalacticSearchRedB()
             driveCmd = 0.0; rotateCmd = 0.0;
             loopCount = 0;
             autoStage++;
+            surveillance->ResetDriveEncoders();
             camera->SetCurrentTarget(0);
             dist = camera->GetCurrDistanceMarker();
             collector->GrabCells();
@@ -213,16 +229,9 @@ void TalonXXI::GalacticSearchRedB()
             break;
 
         case 2:
-            driveCmd = 0.0; rotateCmd = 0.0;
-            loopCount = 0;
-            autoStage++;            
-            surveillance->ResetDriveEncoders();
-            break;
-
-        case 3:
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
-                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
+                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.35 - driveCmd); 
                 rotateCmd = 0.0;
                 
             }
@@ -232,23 +241,45 @@ void TalonXXI::GalacticSearchRedB()
             }
             break;
 
-        case 4:
+        case 3:
             if(deathStar->GetCellCount() == 1)
             {
-                dist = camera->GetCurrDistanceMarker();                
+                camera->SetCurrentTarget(0);
+                dist = camera->GetCurrDistanceMarker();  
+                surveillance->ResetDriveEncoders();
+                printf("Dist: %f\n", dist);
+                loopCount = 0;
+                // driveCmd = 0.0; rotateCmd = 0.0;              
                 autoStage++;
             }
             else
             {
-                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
+                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.35 - driveCmd); 
                 rotateCmd = 0.0;
+            }
+            break;
+
+        case 4:
+            if (loopCount < PI_LOAD_PAUSE)
+            {
+                loopCount++;
+            }
+            else
+            {
+                driveCmd = 0.0; rotateCmd = 0.0;
+                camera->SetCurrentTarget(0);
+                dist = camera->GetCurrDistanceMarker();
+                surveillance->ResetDriveEncoders();
+                loopCount = 0;
+                autoStage++;
+                //goalAngle = camera->GetCurrDistanceMarker();
             }
             break;
 
         case 5:
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
-                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
+                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.3 - driveCmd); 
                 rotateCmd = 0.0;
             }
             else
@@ -262,11 +293,14 @@ void TalonXXI::GalacticSearchRedB()
             {
                 dist = camera->GetCurrDistanceMarker();
                 surveillance->ResetDriveEncoders();
+                driveCmd = 0.0; rotateCmd = 0.0; 
+                loopCount = 0;
                 autoStage++;
             }
             else
             {
-                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
+                // driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.35 - driveCmd); 
+                driveCmd = 0.0;
                 rotateCmd = 0.0;
             }
             break;
@@ -274,7 +308,7 @@ void TalonXXI::GalacticSearchRedB()
         case 7:
             if(loopCount < TIME_TURNING_TO_B7_REDB)
             {
-                driveCmd = -0.1; rotateCmd = 100.0;
+                driveCmd = -0.1; rotateCmd = 150.0;
             }
             else
             {
@@ -287,9 +321,26 @@ void TalonXXI::GalacticSearchRedB()
             break;
 
         case 8:
+            if (loopCount < PI_LOAD_PAUSE)
+            {
+                loopCount++;
+            }
+            else
+            {
+                driveCmd = 0.0; rotateCmd = 0.0;
+                camera->SetCurrentTarget(0);
+                dist = camera->GetCurrDistanceMarker();
+                surveillance->ResetDriveEncoders();
+                loopCount = 0;
+                autoStage++;
+                //goalAngle = camera->GetCurrDistanceMarker();
+            }
+            break;
+
+        case 9:
             if(fabs(surveillance->GetAverageDriveDis()) < dist)
             {
-                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
+                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.3 - driveCmd); 
                 rotateCmd = 0.0;
             }
             else
@@ -298,23 +349,26 @@ void TalonXXI::GalacticSearchRedB()
             }
             break;
 
-        case 9:
+        case 10:
             if(deathStar->GetCellCount() == 3)
             {
-                autoStage++;                
+                autoStage++;
+                collector->StopGrab();
+                loopCount = 0;                
             }
             else
             {
-                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
+                // driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
+                driveCmd = 0.0;
                 rotateCmd = 0.0;
-                collector->StopGrab();
+                
             }
             break;
 
-        case 10:
+        case 11:
             if(loopCount < TIME_TURNING_TO_ENDZONE_REDB)
             {
-                driveCmd = -0.1; rotateCmd = -100.0;
+                driveCmd = -0.1; rotateCmd = 120.0;
             }
             else
             {
@@ -326,10 +380,10 @@ void TalonXXI::GalacticSearchRedB()
             }
             break;
 
-        case 11:
-            if(surveillance->GetAverageDriveDis() < DISTANCE_TO_ENDZONE_REDB)
+        case 12:
+            if(fabs(surveillance->GetAverageDriveDis()) < DISTANCE_TO_ENDZONE_REDB)
             {
-                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, -0.5 - driveCmd); 
+                driveCmd = driveCmd + Limit(-MAX_AUTO_ACCELERATION, MAX_AUTO_ACCELERATION, 0.5 - driveCmd); 
                 rotateCmd = 0.0;
             }
             else
@@ -340,7 +394,7 @@ void TalonXXI::GalacticSearchRedB()
             }
             break;
 
-        case 12:
+        case 13:
             driveCmd = 0.0; rotateCmd = 0.0;
             autoMode = autoModeSecond;
             autoStage = 0;
@@ -675,13 +729,13 @@ void TalonXXI::GalacticSearch()
     case 0:
         if(camera->SetCurrentTarget(0))
         {
-            if(camera->GetCurrDistanceMarker() < 95)
+            if(camera->GetNumObjectsSeen() > 1)
             {
-                galacticStage= RED_A;
+                galacticStage= RED_B;
             }
             else 
             {
-                galacticStage= RED_B;
+                galacticStage= RED_A;
             }
         }
         else

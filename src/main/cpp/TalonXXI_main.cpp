@@ -80,6 +80,9 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   isPathRead= false;
 
   galacticStage= 0;
+
+  oldDriveAngle = 0.0;
+  goalAngle = 0.0;
 }
 
 void TalonXXI::RobotInit() 
@@ -357,15 +360,15 @@ void TalonXXI::TeleopPeriodic()
     shooter->GiveShooterGoalVel(SHOOTER_COLOR_WHEEL_VEL);
     //shooter->GiveShooterGoalVel(200.0);
   }
-  /*if(userInput->GetDpadUpPushed())
+  if(userInput->GetDpadUpPushed())
   {
-    planner->BounceVelArray();
+    shooter->GiveShooterGoalVel(SHOOTER_COLOR_WHEEL_VEL);
   }
   else if(userInput->GetDpadDownButton())
   {
-    climb->MoveExtender(-1.0);
+    shooter->GiveShooterGoalVel(0.0);
   }
-  else
+  /*else
   {
     climb->MoveExtender(0.0);
   }
