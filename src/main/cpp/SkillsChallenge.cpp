@@ -90,7 +90,7 @@ void TalonXXI::GalacticSearchRedA()
         case 6:
             if(loopCount < TIME_TURNING_TO_A6_REDA)
             {
-                driveCmd = -0.1; rotateCmd = -102.0;
+                driveCmd = -0.1; rotateCmd = -97.0;
             }
             else
             {

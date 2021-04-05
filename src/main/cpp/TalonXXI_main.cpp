@@ -62,6 +62,8 @@ TalonXXI::TalonXXI():TimedRobot(LOOPTIME)
   isDelay = false;
   isInTeleop = false;
   trajIndex = 0;
+  speedUpShooter = false;
+
 
   addedDrive = 0.0;
   addedRotate = 0.0;
@@ -116,6 +118,7 @@ void TalonXXI::DisabledInit()
 
 void TalonXXI::DisabledPeriodic()
 {
+  speedUpShooter = false;
   ModeSelection(false);
   limelight->TurnOffLED();
   if(modeChange)
@@ -231,6 +234,7 @@ void TalonXXI::TeleopInit()
 {
   
   isAuto = false;
+  speedUpShooter = false;
   surveillance->Analyze();
   deathStar->LocalReset();
   turret->LocalReset();
@@ -362,12 +366,22 @@ void TalonXXI::TeleopPeriodic()
   }
   if(userInput->GetDpadUpPushed())
   {
-    shooter->GiveShooterGoalVel(SHOOTER_COLOR_WHEEL_VEL);
+    speedUpShooter = true;
   }
   else if(userInput->GetDpadDownButton())
   {
+    speedUpShooter = false;
+  }
+
+    if(speedUpShooter)
+  {
+    shooter->GiveShooterGoalVel(SHOOTER_COLOR_WHEEL_VEL);
+  }
+  else
+  {
     shooter->GiveShooterGoalVel(0.0);
   }
+
   /*else
   {
     climb->MoveExtender(0.0);

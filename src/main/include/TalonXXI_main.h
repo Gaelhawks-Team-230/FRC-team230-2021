@@ -163,6 +163,7 @@ private:
   double rotateCmd;
   double isGyroOn;
   bool isInTeleop;
+  bool speedUpShooter;
   int loopCount;
 
   bool isJoystickCountInitialized;
