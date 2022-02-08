@@ -309,11 +309,13 @@ void TalonXXI::TeleopPeriodic()
     turret->SetTargetingValues();
     shooter->SetTargeting();
     deathStar->PrepToShoot();
+    speedUpShooter = true; //uncomment this if you want shooter wheels to start spinning with targeting
   }
   else
   {
     turret->StopTargeting();
     shooter->StopTargeting();
+    speedUpShooter = false; //uncomment this if you want shooter wheels to stop spinning when not targeting
   }
   if(userInput->GamepadBtnPushed(SHOOTING_BUTTON))
   {
@@ -366,7 +368,7 @@ void TalonXXI::TeleopPeriodic()
   }
   if(userInput->GetDpadUpPushed())
   {
-    speedUpShooter = true;
+    speedUpShooter = true; //press this button start shooter wheels before even targeting
   }
   else if(userInput->GetDpadDownButton())
   {
