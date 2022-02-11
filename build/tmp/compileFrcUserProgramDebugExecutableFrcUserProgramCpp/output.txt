@@ -1,19 +1,34 @@
 See file:///C:/Users/gaelhawks/Documents/230-InfiniteRecharge2021/FRC-team230-2021/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
 compiling SkillsChallenge.cpp successful.
 
-compiling Drivetrain.cpp successful.
-
-compiling SensorState.cpp successful.
+compiling BallShooter.cpp successful.
 
 compiling DeathStar.cpp successful.
 
-compiling ShooterTurret.cpp successful.
+compiling SensorState.cpp successful.
+
+compiling Drivetrain.cpp successful.
+
+compiling Autonomous.cpp successful.
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp: In member function 'void TalonXXI::ModeSelection(bool)':
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:491:17: warning: variable 'startPos' set but not used [-Wunused-but-set-variable]
+     const char* startPos;
+                 ^~~~~~~~
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:492:17: warning: variable 'autoLevel' set but not used [-Wunused-but-set-variable]
+     const char* autoLevel;
+                 ^~~~~~~~~
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp: In member function 'void TalonXXI::TestSkillsChal()':
+C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:439:9: warning: statement will never be executed [-Wswitch-unreachable]
+         loopCount++;
+         ^~~~~~~~~
 
 compiling CellCollector.cpp successful.
 
 compiling LimeLight.cpp successful.
 
 compiling VisionPi.cpp successful.
+
+compiling ShooterTurret.cpp successful.
 
 compiling TrajectoryPlan.cpp successful.
 C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\TrajectoryPlan.cpp: In member function 'void TrajectoryPlan::PrintPath()':
@@ -35,20 +50,5 @@ In file included from C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-
 C:\Users\gaelhawks\.gradle\caches\transforms-2\files-2.1\c8e850653c2afd60a8151f1bf737926e\wpilibc-cpp-2020.3.2-headers/frc/TimedRobot.h:53:12: note: declared here
    explicit TimedRobot(double period);
             ^~~~~~~~~~
-
-compiling Autonomous.cpp successful.
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp: In member function 'void TalonXXI::ModeSelection(bool)':
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:491:17: warning: variable 'startPos' set but not used [-Wunused-but-set-variable]
-     const char* startPos;
-                 ^~~~~~~~
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:492:17: warning: variable 'autoLevel' set but not used [-Wunused-but-set-variable]
-     const char* autoLevel;
-                 ^~~~~~~~~
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp: In member function 'void TalonXXI::TestSkillsChal()':
-C:\Users\gaelhawks\Documents\230-InfiniteRecharge2021\FRC-team230-2021\src\main\cpp\Autonomous.cpp:439:9: warning: statement will never be executed [-Wswitch-unreachable]
-         loopCount++;
-         ^~~~~~~~~
-
-compiling BallShooter.cpp successful.
 
 Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Users/gaelhawks/Documents/230-InfiniteRecharge2021/FRC-team230-2021/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.

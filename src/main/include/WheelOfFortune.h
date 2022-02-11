@@ -76,7 +76,7 @@ class WheelOfFortune
         void GetMatchColor(void);
         void SetIdleMode(void);
         void ManualWheelMove(double);
+        
         void Testing(double);
 };
 #endif /*WheelOfFortune_H_*/
-*/
