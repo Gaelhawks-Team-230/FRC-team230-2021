@@ -210,7 +210,7 @@ double JoystickState::GetGamepadAxis(int axisNumber)
 {
     if ((axisNumber < 0) || (axisNumber >= gamepadAxisCount))
     {
-        printf("Invalid gamepad axis number %d!\n", axisNumber);
+        // printf("Invalid gamepad axis number %d!\n", axisNumber);
         return 0;
     }
     else
