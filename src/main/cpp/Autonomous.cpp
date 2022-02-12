@@ -441,6 +441,7 @@ void TalonXXI::TestSkillsChal()
             driveCmd = 0.0; rotateCmd = 0.0;
             //drive->LocalReset();
             surveillance->ResetDriveEncoders();
+            planner->PrintPath();
             loopCount = 0;
             trajIndex = 0;
             autoStage++;
@@ -451,10 +452,10 @@ void TalonXXI::TestSkillsChal()
             if(!planner->IsPathComplete(trajIndex))
             {
                 std::vector<double> cmds = planner->GetCurrentCmd(trajIndex);
-                velCmd = cmds[0];
+                velCmd = cmds[0] * -1;
                 rotateCmd = cmds[1]*180/PI;
                 trajIndex++;
-                printf("VelCmd: %f\n", velCmd);
+                printf("VelCmd: %f, RotateCmd: %f\n", velCmd, rotateCmd);
             }
             else
             {
